@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unduhan - PGRI Cabang Samarang</title>
+	<!-- INI DIA KODE UNTUK MENGGANTI BOLA DUNIA JADI LOGO PGRI -->
+    <link rel="icon" type="image/png" href="logo_pgri.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --pgri-blue: #004a99; --pgri-accent: #ffc107; --light-bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); }
+        .navbar { background-color: var(--pgri-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--pgri-accent) !important; }
+        .dropdown-menu { border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .dropdown-item:hover { background-color: #f1f3f5; color: var(--pgri-blue); font-weight: 500; }
+        
+        .download-item { border-left: 4px solid var(--pgri-blue); background: white; transition: all 0.3s ease; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .download-item:hover { border-left-color: var(--pgri-accent); background: #f8f9fa; transform: translateX(5px); }
+        
+        footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; }
+        footer a { color: #adb5bd; text-decoration: none; }
+        footer a:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI UTAMA -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="logo_pgri.png" alt="Logo PGRI" style="height: 45px; margin-right: 10px;">
+                PGRI CABANG KEC. SAMARANG
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">Profil</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
+                            <li><a class="dropdown-item" href="profil.html#pengurus">Pengurus</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="berita.html">Berita & Karya</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="unduhan.html">Unduhan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER HALAMAN -->
+    <div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #004a99 0%, #007bff 100%);">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold"><i class="fas fa-folder-open me-2"></i> Pusat Unduhan</h1>
+            <p class="lead mb-0">Dokumen administrasi, SK, dan Formulir Keanggotaan PGRI Samarang</p>
+        </div>
+    </div>
+
+    <!-- AREA UNDUHAN -->
+    <div class="container py-5 mt-3 mb-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                
+                <h5 class="fw-bold mb-3 text-primary">Kategori: Formulir Organisasi</h5>
+                <div class="download-item p-4 mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fw-bold mb-1">Formulir Pendaftaran Anggota Baru (PDF)</h6>
+                        <small class="text-muted">Diperbarui: 10 Jan 2026 | Ukuran: 1.2 MB</small>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
+                </div>
+                <div class="download-item p-4 mb-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fw-bold mb-1">Formulir Pengajuan Mutasi / Pindah Tugas (DOC)</h6>
+                        <small class="text-muted">Diperbarui: 12 Jan 2026 | Ukuran: 800 KB</small>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
+                </div>
+
+                <h5 class="fw-bold mb-3 text-primary mt-5">Kategori: Juknis & Pedoman</h5>
+                <div class="download-item p-4 mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fw-bold mb-1">AD/ART PGRI Terbaru Versi Kongres (PDF)</h6>
+                        <small class="text-muted">Pusat PB PGRI | Ukuran: 5.4 MB</small>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
+                </div>
+                <div class="download-item p-4 mb-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fw-bold mb-1">Buku Panduan Pembayaran Iuran Ranting (PDF)</h6>
+                        <small class="text-muted">Cabang Samarang | Ukuran: 2.1 MB</small>
+                    </div>
+                    <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                   <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
