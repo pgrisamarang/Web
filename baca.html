@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baca Artikel - PGRI Cabang Samarang</title>
+    
+    <!-- KTP SOSIAL MEDIA (Standar Awal sebelum diubah oleh Javascript) -->
+    <meta property="og:title" id="metaOgTitle" content="Artikel PGRI Cabang Samarang">
+    <meta property="og:description" id="metaOgDesc" content="Baca selengkapnya artikel dan publikasi dari PGRI Cabang Samarang.">
+    <meta property="og:image" id="metaOgImage" content="https://uuskusaeri49-collab.github.io/Website-PGRI-Cabang-Samarang/logo-pgri.jpg">
+    <meta property="og:type" content="article">
+    
+    <link rel="icon" type="image/png" href="logo-pgri.jpg">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --pgri-blue: #004a99; --pgri-accent: #ffc107; }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background-color: var(--pgri-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--pgri-accent) !important; }
+        .dropdown-menu { border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .dropdown-item:hover { background-color: #f1f3f5; color: var(--pgri-blue); font-weight: 500; }
+        
+        footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; margin-top: 50px;}
+        footer a { color: #adb5bd; text-decoration: none; }
+        footer a:hover { color: white; }
+        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: white; }
+        
+        /* CSS Konten Artikel */
+        .article-content { font-size: 1.1rem; line-height: 1.8; color: #444; }
+        .article-content p { margin-bottom: 1rem; }
+        .article-content a { color: var(--pgri-blue); text-decoration: underline; }
+        .article-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* CSS Kartu Rekomendasi & Komentar */
+        .rek-card { transition: transform 0.3s; border-radius: 10px; overflow: hidden; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .rek-card:hover { transform: translateY(-5px); }
+        .rek-title { font-size: 1rem; font-weight: bold; line-height: 1.4; }
+        .rek-title a { color: var(--pgri-blue); text-decoration: none; }
+        .card-custom { border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI UTAMA -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <!-- Ini bagian yang diubah: Menambahkan logo dengan ukuran tinggi 45px -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <img src="logo_pgri.png" style="height: 45px; margin-right: 10px;">
+                PGRI CABANG KEC. SAMARANG
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">
+                            Profil
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
+                            <li><a class="dropdown-item" href="profil.html#pengurus">Pengurus</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="berita.html">Berita & Karya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="unduhan.html">Unduhan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AREA BACA ARTIKEL -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="article-container" id="wadahArtikel">
+                    <!-- Loading Status -->
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-spinner fa-spin fa-3x mb-3 text-primary"></i>
+                        <h5>Sedang mengambil data artikel...</h5>
+                    </div>
+                </div>
+
+                <!-- WADAH ARTIKEL LAINNYA -->
+                <div class="mt-5 mb-5 border-top pt-5">
+                    <h4 class="fw-bold mb-4 border-bottom border-2 border-primary pb-2 d-inline-block">Baca Artikel Lainnya</h4>
+                    <div class="row" id="wadahArtikelLainnya">
+                        <div class="col-12 text-muted"><i class="fas fa-spinner fa-spin me-2"></i>Mencari rekomendasi...</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, getDocs, query, orderBy, limit, where, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBy2KzlKK1L4KmOGNiBpy-tZcJAc9ETApM",
+            authDomain: "pgri-samarang.firebaseapp.com",
+            projectId: "pgri-samarang",
+            storageBucket: "pgri-samarang.firebasestorage.app",
+            messagingSenderId: "879465219309",
+            appId: "1:879465219309:web:f10c0717a4e2e87a7f38e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const idArtikel = urlParams.get('id');
+        
+        const wadahArtikel = document.getElementById("wadahArtikel");
+        const wadahArtikelLainnya = document.getElementById("wadahArtikelLainnya"); 
+
+        async function muatArtikelPenuh() {
+            if (!idArtikel) {
+                wadahArtikel.innerHTML = '<div class="alert alert-danger shadow-sm">Silakan pilih artikel dari menu <a href="berita.html">Berita & Karya</a>.</div>';
+                return;
+            }
+
+            try {
+                // Tunjuk ke dokumen spesifik di koleksi "postingan"
+                const docRef = doc(db, "postingan", idArtikel);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    // ANTI-ERROR: Beri 'Ban Serep' kalau ada data yang kosong/hilang di Firebase
+                    const judulAman = data.judul || "Tanpa Judul";
+                    const isiAman = data.isi || "<p><i>Tidak ada deskripsi tambahan.</i></p>";
+                    const penulisAman = data.penulis || "Admin PGRI";
+                    const kategoriAman = data.kategori || "Umum";
+                    
+                    // JURUS ILUSI: UBAH TITLE DAN META TAGS SECARA OTOMATIS
+                    document.title = judulAman + " - PGRI Samarang";
+                    
+                    // Buat cuplikan teks pendek untuk deskripsi
+                    let teksDeskripsi = isiAman.replace(/<[^>]*>?/gm, ''); // Hapus kode HTML dari teks
+                    teksDeskripsi = teksDeskripsi.length > 100 ? teksDeskripsi.substring(0, 100) + "..." : teksDeskripsi;
+
+                    // Ubah meta tags di bagian <head>
+                    document.getElementById('metaOgTitle').setAttribute("content", judulAman);
+                    document.getElementById('metaOgDesc').setAttribute("content", teksDeskripsi);
+                    
+                    if (data.gambar) {
+                        document.getElementById('metaOgImage').setAttribute("content", data.gambar);
+                    }
+
+                    // Format tanggal yang aman dari error (Safe Check)
+                    let tanggalPosting = "Baru saja";
+                    if (data.tanggalDibuat && typeof data.tanggalDibuat.toDate === 'function') {
+                        const dateObj = data.tanggalDibuat.toDate();
+                        tanggalPosting = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                    }
+
+                    let elemenGambarBaca = "";
+                    if (data.gambar) {
+                        elemenGambarBaca = `<img src="${data.gambar}" class="img-fluid rounded shadow-sm mb-4 w-100" style="max-height: 450px; object-fit: cover;" alt="Foto Artikel">`;
+                    }
+
+                    // Tampilkan ke HTML
+                    wadahArtikel.innerHTML = `
+                        <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="berita.html" class="text-decoration-none">Berita</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">${kategoriAman}</li>
+                          </ol>
+                        </nav>
+                        
+                        <h1 class="article-title fw-bold mb-3 mt-2">${judulAman}</h1>
+                        
+                        <div class="d-flex align-items-center mb-4 pb-3 border-bottom text-muted">
+                            <i class="fas fa-user-circle fa-2x me-2 text-primary"></i>
+                            <div>
+                                <div class="fw-bold text-dark">${penulisAman}</div>
+                                <small><i class="far fa-calendar-alt me-1"></i> Dipublikasikan pada ${tanggalPosting}</small>
+                            </div>
+                        </div>
+
+                        ${elemenGambarBaca}
+
+                        <div class="article-content">${isiAman}</div>
+                        
+                        <div class="mt-5 pt-4 border-top">
+                            <h6 class="fw-bold mb-3">Bagikan Artikel Ini:</h6>
+                            <button class="btn btn-sm btn-outline-success me-2 rounded-pill px-3" onclick="window.open('https://api.whatsapp.com/send?text=${encodeURIComponent(judulAman + ' | Baca selengkapnya di: ' + window.location.href)}', '_blank')"><i class="fab fa-whatsapp me-1"></i> WhatsApp</button>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}', '_blank')"><i class="fab fa-facebook me-1"></i> Facebook</button>
+                        </div>
+
+                        <!-- ================= FITUR BARU: KOLOM KOMENTAR ================= -->
+                                    <div class="mb-3">
+                                        <textarea id="isiKomen" class="form-control" rows="3" placeholder="Tulis komentar membangun di sini..." required></textarea>
+                                    </div>
+                                    <button type="submit" id="btnKirimKomen" class="btn btn-primary fw-bold px-4">
+                                        <i class="fas fa-paper-plane me-1"></i> Kirim Tanggapan
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Panggil fungsi lanjutan
+                    muatArtikelLainnya(idArtikel);
+                    muatKomentar(idArtikel);
+
+                } else {
+                    wadahArtikel.innerHTML = '<div class="alert alert-warning">Maaf, artikel ini sudah dihapus atau tidak tersedia.</div>';
+                    wadahArtikelLainnya.innerHTML = '';
+                }
+            } catch (error) {
+                console.error("Error mengambil artikel:", error);
+                wadahArtikel.innerHTML = '<div class="alert alert-danger">Gagal memuat artikel. Coba muat ulang halaman.</div>';
+            }
+        }
+
+        // FUNGSI ARTIKEL LAINNYA
+        async function muatArtikelLainnya(idSaatIni) {
+            try {
+                const q = query(collection(db, "postingan"), orderBy("tanggalDibuat", "desc"), limit(4));
+                const snapshot = await getDocs(q);
+                
+                wadahArtikelLainnya.innerHTML = "";
+                let jumlahDitampilkan = 0;
+
+                snapshot.forEach(doc => {
+                    if(doc.id !== idSaatIni && jumlahDitampilkan < 3) {
+                        const data = doc.data();
+                        const gambarThumb = data.gambar ? data.gambar : "https://placehold.co/400x250/eeeeee/004a99?text=PGRI";
+                        const htmlCard = `
+                            <div class="col-md-4 mb-4">
+                                <div class="card rek-card h-100">
+                                    <img src="${gambarThumb}" class="card-img-top" style="height: 150px; object-fit: cover;" alt="Thumbnail">
+                                    <div class="card-body">
+                                        <span class="badge bg-secondary mb-2" style="font-size: 0.7rem;">${data.kategori}</span>
+                                        <h5 class="rek-title mb-0"><a href="baca.html?id=${doc.id}">${data.judul}</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        wadahArtikelLainnya.innerHTML += htmlCard;
+                        jumlahDitampilkan++;
+                    }
+                });
+                if(jumlahDitampilkan === 0) wadahArtikelLainnya.innerHTML = '<div class="col-12"><p class="text-muted">Belum ada artikel lainnya.</p></div>';
+            } catch (e) {
+                console.error("Gagal muat rekomendasi: ", e);
+                wadahArtikelLainnya.innerHTML = '';
+            }
+        }
+
+        // FUNGSI MUAT KOMENTAR
+        async function muatKomentar(idSaatIni) {
+            const wadahKomen = document.getElementById("wadahKomentar");
+            try {
+                const q = query(collection(db, "komentar"), where("idArtikel", "==", idSaatIni));
+                const snapshot = await getDocs(q);
+                
+                let dataKomen = [];
+                snapshot.forEach(doc => dataKomen.push(doc.data()));
+
+                if (dataKomen.length === 0) {
+                    wadahKomen.innerHTML = '<div class="alert border-0 bg-white shadow-sm text-muted small text-center py-4"><i class="fas fa-leaf mb-2 d-block fa-2x text-success"></i> Belum ada tanggapan. Jadilah yang pertama berkomentar!</div>';
+                    return;
+                }
+
+                // Urutkan dari yang terbaru
+                dataKomen.sort((a, b) => {
+                    let waktuA = a.tanggal ? a.tanggal.toMillis() : Date.now();
+                    let waktuB = b.tanggal ? b.tanggal.toMillis() : Date.now();
+                    return waktuB - waktuA;
+                });
+
+                wadahKomen.innerHTML = "";
+                dataKomen.forEach(k => {
+                    let waktuTampil = "Baru saja";
+                    if (k.tanggal && typeof k.tanggal.toDate === 'function') {
+                        waktuTampil = k.tanggal.toDate().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                    }
+                    
+                    wadahKomen.innerHTML += `
+                        <div class="d-flex mb-3 pb-3 border-bottom">
+                            <div class="me-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold text-uppercase shadow-sm" style="width: 45px; height: 45px; font-size: 1.2rem;">
+                                    ${k.nama.charAt(0)}
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">${k.nama}</h6>
+                                <small class="text-muted d-block mb-2"><i class="far fa-clock me-1"></i> ${waktuTampil}</small>
+                                <p class="mb-0 text-dark" style="font-size: 0.95rem;">${k.isi}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+
+            } catch (error) {
+                console.error("Gagal muat komentar", error);
+                wadahKomen.innerHTML = '<div class="text-danger small">Gagal memuat komentar.</div>';
+            }
+        }
+
+        // FUNGSI KIRIM KOMENTAR
+        document.addEventListener('submit', async function(e) {
+            if(e.target && e.target.id === 'formKomentar') {
+                e.preventDefault();
+                const btnKirim = document.getElementById("btnKirimKomen");
+                const nama = document.getElementById("namaKomen").value;
+                const isi = document.getElementById("isiKomen").value;
+                
+                btnKirim.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Mengirim...';
+                btnKirim.disabled = true;
+
+                try {
+                    await addDoc(collection(db, "komentar"), {
+                        idArtikel: idArtikel,
+                        nama: nama,
+                        isi: isi,
+                        tanggal: serverTimestamp()
+                    });
+                    
+                    document.getElementById("formKomentar").reset();
+                    muatKomentar(idArtikel);
+                    
+                } catch (error) {
+                    console.error("Error kirim komen: ", error);
+                    alert("Gagal mengirim komentar. Pastikan internet stabil.");
+                } finally {
+                    btnKirim.innerHTML = '<i class="fas fa-paper-plane me-1"></i> Kirim Tanggapan';
+                    btnKirim.disabled = false;
+                }
+            }
+        });
+
+        // JALANKAN SEMUA
+        document.addEventListener("DOMContentLoaded", muatArtikelPenuh);
+    </script>
+</body>
+</html>
