@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - PGRI Samarang</title>
+    <link rel="icon" type="image/png" href="logo-pgri.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #004a99 0%, #007bff 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .login-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card text-center">
+        <img src="logo_pgri.png" style="height: 60px; margin-bottom: 20px;">
+        <h4 class="fw-bold mb-1">Ruang Admin</h4>
+        <p class="text-muted mb-4 small">Silakan login untuk mengelola website</p>
+
+        <div id="pesanError" class="alert alert-danger d-none small text-start" role="alert"></div>
+
+        <form id="formLogin" class="text-start">
+            <div class="mb-3">
+                <label class="form-label fw-bold small">Alamat Email</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-envelope"></i></span>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="admin@email.com" required>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold small">Kata Sandi</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="fas fa-lock"></i></span>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="********" required>
+                </div>
+            </div>
+            <button type="submit" id="btnLogin" class="btn btn-primary w-100 fw-bold">
+                <i class="fas fa-sign-in-alt me-2"></i> Masuk Sekarang
+            </button>
+        </form>
+        
+        <div class="mt-4">
+            <a href="index.html" class="text-decoration-none small text-muted"><i class="fas fa-arrow-left me-1"></i> Kembali ke Beranda</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        // Import alat otentikasi Firebase
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBy2KzlKK1L4KmOGNiBpy-tZcJAc9ETApM",
+            authDomain: "pgri-samarang.firebaseapp.com",
+            projectId: "pgri-samarang",
+            storageBucket: "pgri-samarang.firebasestorage.app",
+            messagingSenderId: "879465219309",
+            appId: "1:879465219309:web:f10c0717a4e2e87a7f38e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const formLogin = document.getElementById("formLogin");
+        const btnLogin = document.getElementById("btnLogin");
+        const pesanError = document.getElementById("pesanError");
+
+        formLogin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById("inputEmail").value;
+            const password = document.getElementById("inputPassword").value;
+            
+            btnLogin.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Memeriksa...';
+            btnLogin.disabled = true;
+            pesanError.classList.add("d-none");
+
+            try {
+                // Proses login ke Firebase
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                // Kalau sukses, langsung pindah ke halaman admin
+                window.location.href = "admin.html";
+            } catch (error) {
+                console.error("Gagal Login:", error.code);
+                pesanError.classList.remove("d-none");
+                
+                // Terjemahkan error bahasa inggris ke bahasa indonesia
+                if(error.code === 'auth/invalid-credential') {
+                    pesanError.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Email atau Password salah!';
+                } else if(error.code === 'auth/too-many-requests') {
+                    pesanError.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Terlalu banyak percobaan gagal. Coba lagi nanti.';
+                } else {
+                    pesanError.innerHTML = '<i class="fas fa-exclamation-circle me-1"></i> Gagal terhubung ke server.';
+                }
+                
+                btnLogin.innerHTML = '<i class="fas fa-sign-in-alt me-2"></i> Masuk Sekarang';
+                btnLogin.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
