@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Karya - PGRI Cabang Samarang</title>
+	<!-- INI DIA KODE UNTUK MENGGANTI BOLA DUNIA JADI LOGO PGRI -->
+    <link rel="icon" type="image/png" href="logo_pgri.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --pgri-blue: #004a99; --pgri-accent: #ffc107; --light-bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); }
+        .navbar { background-color: var(--pgri-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--pgri-accent) !important; }
+        .dropdown-menu { border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .dropdown-item:hover { background-color: #f1f3f5; color: var(--pgri-blue); font-weight: 500; }
+        
+        .card-custom { border: none; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+        .card-custom:hover { transform: translateY(-5px); }
+        
+        footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; }
+        footer a { color: #adb5bd; text-decoration: none; }
+        footer a:hover { color: white; }
+        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI UTAMA -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="logo_pgri.png" alt="Logo PGRI" style="height: 45px; margin-right: 10px;">
+                PGRI CABANG KEC. SAMARANG
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">Profil</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
+                            <li><a class="dropdown-item" href="profil.html#pengurus">Pengurus</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="berita.html">Berita & Karya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="unduhan.html">Unduhan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER HALAMAN -->
+    <div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #004a99 0%, #007bff 100%);">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold"><i class="fas fa-newspaper me-2"></i> Portal Berita & Karya</h1>
+            <p class="lead mb-0">Arsip lengkap kegiatan organisasi dan ruang apresiasi karya guru Samarang</p>
+        </div>
+    </div>
+
+    <!-- AREA KONTEN BERITA (Dinamis dari Firebase) -->
+    <div class="container py-5">
+        <!-- Filter Kategori (Hiasan UI) -->
+        <div class="d-flex justify-content-center mb-5">
+            <div class="btn-group shadow-sm" role="group" id="grupTombolFilter">
+                <!-- Kita tambahkan atribut data-filter agar mesin tahu ini kategori apa -->
+                <button type="button" class="btn btn-primary active" data-filter="Semua">Semua Berita</button>
+                <button type="button" class="btn btn-outline-primary bg-white" data-filter="Berita Kegiatan">Berita Kegiatan</button>
+                <button type="button" class="btn btn-outline-primary bg-white" data-filter="Pojok Karya">Pojok Karya</button>
+                <button type="button" class="btn btn-outline-primary bg-white" data-filter="Pengumuman">Pengumuman</button>
+            </div>
+        </div>
+
+        <div class="row" id="wadahSemuaBerita">
+            <!-- Loading Ikon -->
+            <div class="col-12 text-center text-muted py-5">
+                <i class="fas fa-spinner fa-spin fa-3x mb-3"></i>
+                <h5>Menarik seluruh arsip data dari server...</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FIREBASE SCRIPT UNTUK MENARIK SEMUA DATA -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBy2KzlKK1L4KmOGNiBpy-tZcJAc9ETApM",
+            authDomain: "pgri-samarang.firebaseapp.com",
+            projectId: "pgri-samarang",
+            storageBucket: "pgri-samarang.firebasestorage.app",
+            messagingSenderId: "879465219309",
+            appId: "1:879465219309:web:f10c0717a4e2e87a7f38e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // VARIABEL GLOBAL: Simpan semua data di sini biar gak bolak-balik Firebase (Hemat Kuota)
+        let semuaDataBeritaMentah = [];
+        const wadah = document.getElementById("wadahSemuaBerita");
+
+        // FUNGSI 1: Tarik data dari server (Hanya dipanggil 1 kali saat buka web)
+        async function tarikDataDariServer() {
+            try {
+                const q = query(collection(db, "postingan"), orderBy("tanggalDibuat", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    wadah.innerHTML = '<div class="col-12"><div class="alert alert-info text-center">Belum ada publikasi.</div></div>';
+                    return;
+                }
+
+                // Masukkan semua data ke variabel penampung
+                semuaDataBeritaMentah = [];
+                querySnapshot.forEach((doc) => {
+                    let data = doc.data();
+                    data.id = doc.id; // Simpan ID untuk link baca
+                    semuaDataBeritaMentah.push(data);
+                });
+
+                // Tampilkan semua berita di awal
+                tampilkanBerita("Semua");
+
+            } catch (error) {
+                console.error("Error: ", error);
+                wadah.innerHTML = '<div class="col-12"><div class="alert alert-danger">Gagal memuat berita dari server.</div></div>';
+            }
+        }
+
+        // FUNGSI 2: Menyaring dan Menampilkan ke Layar
+        function tampilkanBerita(kategoriPilihan) {
+            wadah.innerHTML = ""; // Bersihkan layar dulu
+            
+            // Proses penyaringan (Filter)
+            let beritaDisaring = [];
+            if (kategoriPilihan === "Semua") {
+                beritaDisaring = semuaDataBeritaMentah;
+            } else {
+                // Hanya ambil berita yang kategorinya sama persis dengan tombol yang diklik
+                beritaDisaring = semuaDataBeritaMentah.filter(berita => berita.kategori === kategoriPilihan);
+            }
+
+            // Kalau setelah disaring ternyata kosong
+            if (beritaDisaring.length === 0) {
+                wadah.innerHTML = `<div class="col-12"><div class="alert alert-secondary text-center shadow-sm">Belum ada artikel untuk kategori <b>${kategoriPilihan}</b>.</div></div>`;
+                return;
+            }
+
+            // Tampilkan yang sudah disaring
+            beritaDisaring.forEach((data) => {
+                let badgeColor = "bg-primary";
+                let icon = "fa-newspaper";
+                if (data.kategori === "Pojok Karya") { badgeColor = "bg-info text-dark"; icon = "fa-pen-nib"; } 
+                else if (data.kategori === "Pengumuman") { badgeColor = "bg-warning text-dark"; icon = "fa-bullhorn"; }
+
+                // INI YANG DIPERBAIKI: Hapus kode HTML bawaan editor (gambar, heading) sebelum dipotong
+                let teksMentah = data.isi.replace(/<[^>]*>?/gm, ''); // Membersihkan tag HTML rahasia
+                const isiPendek = teksMentah.length > 120 ? teksMentah.substring(0, 120) + "..." : teksMentah;
+
+                const elemenGambar = data.gambar 
+                    ? `<img src="${data.gambar}" class="card-img-top" alt="Foto" style="height: 220px; object-fit: cover;">`
+                    : `<img src="https://placehold.co/600x400/eeeeee/004a99?text=PGRI+Samarang" class="card-img-top" alt="Default" style="height: 220px; object-fit: cover;">`;
+
+                const htmlCard = `
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card card-custom h-100 shadow-sm border-0 overflow-hidden">
+                            ${elemenGambar}
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-2 mt-1">
+                                    <span class="badge ${badgeColor}"><i class="fas ${icon} me-1"></i> ${data.kategori}</span>
+                                </div>
+                                <h5 class="card-title fw-bold mt-1">${data.judul}</h5>
+                                <p class="text-muted small mb-3"><i class="fas fa-user-edit me-1"></i> ${data.penulis}</p>
+                                <p class="card-text text-muted" style="font-size:0.95rem;">${isiPendek}</p>
+                                <a href="baca.html?id=${data.id}" class="btn btn-outline-primary mt-auto align-self-start w-100"><i class="fas fa-book-open me-1"></i> Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                wadah.innerHTML += htmlCard;
+            });
+        }
+
+        // FUNGSI 3: Logika Klik Tombol Filter
+        const tombolFilter = document.querySelectorAll("#grupTombolFilter button");
+        
+        tombolFilter.forEach(tombol => {
+            tombol.addEventListener("click", function() {
+                // 1. Ubah warna semua tombol jadi putih (tidak aktif)
+                tombolFilter.forEach(btn => {
+                    btn.classList.remove("btn-primary", "active");
+                    btn.classList.add("btn-outline-primary", "bg-white");
+                });
+                
+                // 2. Ubah warna tombol yang ditekan jadi biru (aktif)
+                this.classList.remove("btn-outline-primary", "bg-white");
+                this.classList.add("btn-primary", "active");
+                
+                // 3. Ambil nama kategori dan saring datanya
+                const kategoriYangDipilih = this.getAttribute("data-filter");
+                tampilkanBerita(kategoriYangDipilih);
+            });
+        });
+
+        // Jalankan saat web pertama kali dibuka
+        document.addEventListener("DOMContentLoaded", tarikDataDariServer);
+    </script>
+</body>
+</html>
