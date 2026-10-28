@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengurus Ranting - PGRI Samarang</title>
-    <link rel="icon" type="image/png" href="logo-pgri.jpg">
+    <link rel="icon" type="image/png" href="logo_pgri.png">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,11 +20,22 @@
         
         .box-filter { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); margin-top: -40px; position: relative; z-index: 10;}
         
-        /* CSS BARU UNTUK KARTU PENGURUS RANTING (Lebih kecil & rapat) */
-        .ranting-card { border: none; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background: white; text-align: center; padding: 15px; margin-bottom: 15px; height: 100%; display: flex; flex-direction: column; align-items: center; border-top: 4px solid var(--pgri-blue);}
-        .ranting-img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 3px solid #e9ecef; margin-bottom: 10px; }
-        .ranting-jabatan { font-size: 0.75rem; font-weight: bold; background-color: var(--pgri-blue); color: white; padding: 4px 12px; border-radius: 15px; margin-bottom: 8px; }
-        .ranting-nama { font-size: 0.95rem; font-weight: bold; margin-bottom: 0; line-height: 1.2; color: #333;}
+        /* CSS BARU: KARTU HORIZONTAL (Foto di Kiri, Teks di Kanan) */
+        .ranting-card-horizontal { 
+            border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+            background: white; padding: 15px; margin-bottom: 15px; height: 100%; 
+            display: flex; align-items: center; border-left: 5px solid var(--pgri-blue);
+            transition: transform 0.2s;
+        }
+        .ranting-card-horizontal:hover { transform: translateY(-3px); }
+        .ranting-img-horizontal { 
+            width: 75px; height: 75px; object-fit: cover; border-radius: 50%; 
+            border: 3px solid #e9ecef; flex-shrink: 0; margin-right: 15px; 
+        }
+        .ranting-info { overflow: hidden; }
+        .ranting-jabatan-h { font-size: 0.75rem; font-weight: bold; color: var(--pgri-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;}
+        .ranting-nama-h { font-size: 1rem; font-weight: bold; margin-bottom: 2px; color: #333; line-height: 1.2;}
+        .ranting-npa-h { font-size: 0.8rem; color: #6c757d; margin-bottom: 0; font-family: monospace;}
         
         footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; margin-top: 50px;}
         footer a { color: #adb5bd; text-decoration: none; }
@@ -37,7 +48,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <img src="logo-pgri.png" alt="Logo PGRI" style="height: 45px; margin-right: 10px;">
+                <img src="logo_pgri.png" style="height: 45px; margin-right: 10px;">
                 PGRI SAMARANG
             </a>
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -129,9 +140,44 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="pt-5 border-top">
-        <div class="container text-center">
-            <p class="text-secondary small">&copy; 2026 PGRI Cabang Samarang. All Rights Reserved.</p>
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -260,35 +306,58 @@
                 `;
             });
 
-            // 4. MEMBUAT KARTU FOTO PENGURUS (Fungsi Bantuan)
-            const buatKartu = (data, labelJabatan, warnaGaris) => {
-                if(!data) return `<div class="col"><div class="ranting-card" style="border-top-color: #ccc;"><div class="ranting-jabatan bg-secondary">${labelJabatan}</div><img src="https://placehold.co/150x150/eeeeee/a3a8ad?text=Kosong" class="ranting-img"><p class="ranting-nama text-muted">-</p></div></div>`;
+            // 4. MEMBUAT KARTU HORIZONTAL (Fungsi Bantuan Baru)
+            const buatKartuHorizontal = (data, labelJabatan, warnaGaris) => {
+                if(!data) {
+                    return `
+                        <div class="col-md-4">
+                            <div class="ranting-card-horizontal" style="border-left-color: #ccc;">
+                                <img src="https://placehold.co/150x150/eeeeee/a3a8ad?text=-" class="ranting-img-horizontal">
+                                <div class="ranting-info">
+                                    <div class="ranting-jabatan-h text-secondary">${labelJabatan}</div>
+                                    <p class="ranting-nama-h text-muted">Belum diatur</p>
+                                    <p class="ranting-npa-h">-</p>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+                
                 let foto = (data.foto && data.foto.trim() !== "") ? data.foto : "https://placehold.co/150x150/e9ecef/a3a8ad?text=Foto";
-                return `<div class="col"><div class="ranting-card" style="border-top-color: ${warnaGaris};"><div class="ranting-jabatan" style="background-color: ${warnaGaris};">${labelJabatan}</div><img src="${foto}" class="ranting-img"><p class="ranting-nama">${data.nama}</p></div></div>`;
+                let npaAsli = data.npa ? String(data.npa) : "-";
+                let npaSensor = (npaAsli.length > 4 && npaAsli !== "-") ? npaAsli.substring(0, npaAsli.length - 4) + "****" : npaAsli;
+
+                return `
+                    <div class="col-md-4 mb-3">
+                        <div class="ranting-card-horizontal" style="border-left-color: ${warnaGaris};">
+                            <img src="${foto}" class="ranting-img-horizontal">
+                            <div class="ranting-info">
+                                <div class="ranting-jabatan-h" style="color: ${warnaGaris};">${labelJabatan}</div>
+                                <p class="ranting-nama-h">${data.nama}</p>
+                                <p class="ranting-npa-h">NPA: ${npaSensor}</p>
+                            </div>
+                        </div>
+                    </div>`;
             };
 
-            // 5. SUSUN HTML STRUKTUR ORGANISASI (Bentuk Piramida)
+            // 5. SUSUN HTML STRUKTUR ORGANISASI (Bentuk Horizontal Rapat)
             let htmlStruktur = `
                 <h5 class="fw-bold mb-3 text-secondary border-start border-4 border-primary ps-2">A. Pengurus Harian</h5>
-                <div class="row justify-content-center mb-3">
-                    <div class="col-md-3 col-6">${buatKartu(pengurus.ketua, "Ketua", "#004a99")}</div>
+                <div class="row">
+                    ${buatKartuHorizontal(pengurus.ketua, "Ketua Ranting", "#004a99")}
+                    ${buatKartuHorizontal(pengurus.wakilKetua, "Wakil Ketua", "#007bff")}
+                    ${buatKartuHorizontal(pengurus.sekretaris, "Sekretaris", "#198754")}
                 </div>
-                <div class="row justify-content-center mb-3">
-                    ${pengurus.wakilKetua ? `<div class="col-md-3 col-6">${buatKartu(pengurus.wakilKetua, "Wakil Ketua", "#007bff")}</div>` : ''}
-                </div>
-                <div class="row justify-content-center mb-4">
-                    ${buatKartu(pengurus.sekretaris, "Sekretaris", "#198754")}
-                    ${pengurus.wakilSekretaris ? buatKartu(pengurus.wakilSekretaris, "Wakil Sekretaris", "#20c997") : ''}
-                    ${buatKartu(pengurus.bendahara, "Bendahara", "#dc3545")}
+                <div class="row">
+                    ${buatKartuHorizontal(pengurus.wakilSekretaris, "Wakil Sekretaris", "#20c997")}
+                    ${buatKartuHorizontal(pengurus.bendahara, "Bendahara", "#dc3545")}
                 </div>
             `;
 
-            // Jika ada Anggota Pengurus (Lebih dari 0)
+            // Jika ada Anggota Pengurus
             if(pengurus.anggotaPengurus.length > 0) {
-                htmlStruktur += `<h5 class="fw-bold mb-3 mt-4 text-secondary border-start border-4 border-warning ps-2">B. Anggota Pengurus</h5><div class="row justify-content-center g-3">`;
+                htmlStruktur += `<h5 class="fw-bold mb-3 mt-4 text-secondary border-start border-4 border-warning ps-2">B. Anggota Pengurus</h5><div class="row">`;
                 pengurus.anggotaPengurus.forEach(ang => {
-                    let foto = (ang.foto && ang.foto.trim() !== "") ? ang.foto : "https://placehold.co/150x150/e9ecef/a3a8ad?text=Foto";
-                    htmlStruktur += `<div class="col-md-2 col-4"><div class="ranting-card" style="border-top-color: #6c757d; padding: 10px;"><img src="${foto}" class="ranting-img" style="width: 50px; height: 50px; border-width: 2px;"><p class="ranting-nama" style="font-size: 0.8rem;">${ang.nama}</p></div></div>`;
+                    htmlStruktur += buatKartuHorizontal(ang, "Anggota Pengurus", "#6c757d");
                 });
                 htmlStruktur += `</div>`;
             }
