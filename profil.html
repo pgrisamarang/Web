@@ -687,13 +687,15 @@
                     return;
                 }
 
+                // Mulai mencetak ke dalam tabel
                 namaNamaRanting.forEach((ranting) => {
                     let info = rekapRanting[ranting];
 
+                    // Ubah Set Sekolah jadi teks yang dipisahkan koma
                     let daftarSekolah = Array.from(info.sekolah).join(", ");
                     if(daftarSekolah === "") daftarSekolah = "-";
 
-                    // HANYA 1 KALI (BERSIH DARI DUPLIKASI)
+                    // Buat Badge Warna-warni untuk Tingkat
                     let htmlTingkat = "";
                     info.tingkat.forEach(t => {
                         if (t === "SD") htmlTingkat += '<span class="badge bg-danger me-1">SD/MI</span>';
@@ -703,13 +705,15 @@
                     });
                     if (htmlTingkat === "") htmlTingkat = '<span class="badge bg-secondary">Umum</span>';
 
+                    // BIKIN URL YANG AMAN DARI SPASI (encodeURIComponent)
                     let linkRanting = encodeURIComponent(ranting);
 
+                    // INI KODE BARU YANG DITEMPEL: Link sekarang menuju ke pengurus-ranting.html
                     let baris = `
                         <tr>
                             <td class="text-center align-middle">${nomor++}</td>
                             <td class="fw-bold align-middle">
-                                <a href="anggota-ranting.html?nama=${linkRanting}" target="_blank" class="text-decoration-none text-primary fw-bold" title="Klik untuk lihat anggota">
+                                <a href="pengurus-ranting.html?ranting=${linkRanting}" target="_blank" class="text-decoration-none text-primary fw-bold" title="Klik untuk lihat struktur dan anggota">
                                     ${ranting} <i class="fas fa-external-link-alt ms-1 text-muted" style="font-size: 0.75rem;"></i>
                                 </a>
                             </td>
