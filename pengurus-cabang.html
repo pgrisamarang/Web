@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengurus Cabang - PGRI Samarang</title>
+    <link rel="icon" type="image/png" href="logo_pgri.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { --pgri-blue: #004a99; --pgri-accent: #ffc107; --light-bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); }
+        .navbar { background-color: var(--pgri-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--pgri-accent) !important; }
+        .dropdown-menu { border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .dropdown-item:hover { background-color: #f1f3f5; color: var(--pgri-blue); font-weight: 500; }
+        
+        .pengurus-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-bottom: 5px solid var(--pgri-blue);
+            height: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+			}
+        .pengurus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-bottom-color: var(--pgri-accent);
+        }
+        .img-pengurus-wrapper {
+            width: 170px;      
+            height: 170px;
+            margin: 0 auto 20px; 
+            border-radius: 50%;
+            overflow: hidden;
+            
+            /* Jarak putih di dalam (diperhalus jadi 4px) */
+            border: 4px solid #ffffff;
+            
+            /* INI RAHASIANYA BOS: Angka 4px diganti jadi 2px supaya garis birunya tipis */
+            box-shadow: 0 0 0 2px var(--pgri-blue), 0 10px 25px rgba(0,0,0,0.12);
+            
+            /* Animasi membal yang sangat halus */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Reaksi Bingkai saat card disentuh mouse */
+        .pengurus-card:hover .img-pengurus-wrapper {
+            /* Garis emas saat di-hover juga ditipiskan jadi 2px */
+            box-shadow: 0 0 0 2px var(--pgri-accent), 0 15px 35px rgba(0,0,0,0.25); 
+            transform: translateY(-8px) scale(1.05); 
+        }
+        
+        /* Efek Zoom pada Foto di Dalamnya */
+        .img-pengurus-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .pengurus-card:hover img {
+            transform: scale(1.15); /* Foto di dalam lingkaran membesar lebih dalam */
+        }
+        
+        /* Teks Nama & Jabatan */
+        .pengurus-nama {
+            font-weight: 700;
+            font-size: 1.12rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .pengurus-jabatan {
+            font-size: 0.7rem;
+            color: var(--pgri-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        /* Pembatas Garis Putus-putus */
+        .hierarki-garis {
+            height: 30px;
+            border-left: 3px dashed #ced4da;
+            margin: 0 auto;
+            width: 3px;
+        }
+        .bidang-title {
+            background-color: var(--pgri-blue);
+            color: white;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 0 30px;
+            box-shadow: 0 4px 10px rgba(0,74,153,0.3);
+        }
+        
+    footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; }
+	footer a { color: #adb5bd; text-decoration: none; }
+	footer a:hover { color: white; }
+	.social-icons a { font-size: 1.5rem; margin-right: 15px; color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="logo_pgri.png" style="height: 45px; margin-right: 10px;">
+                PGRI CABANG KEC. SAMARANG
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">Profil</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
+                            <li><a class="dropdown-item" href="pengurus-cabang.html">Pengurus Cabang</a></li>
+                            <li><a class="dropdown-item" href="pengurus-ranting.html">Pengurus Ranting</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="berita.html">Berita & Karya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="unduhan.html">Unduhan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER HALAMAN -->
+    <div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #004a99 0%, #007bff 100%);">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold"><i class="fas fa-sitemap me-2"></i> Susunan Pengurus Cabang</h1>
+            <p class="lead mb-0">Masa Bakti 2025-2030 PGRI Cabang Kecamatan Samarang</p>
+        </div>
+    </div>
+
+    <!-- STRUKTUR PENGURUS -->
+    <div class="container py-5 mt-3 mb-5">
+        
+        <!-- KETUA UMUM (Posisi Tengah) -->
+        <div class="row justify-content-center mb-3">
+                <div class="col-lg-4 col-md-6 col-10">
+                    <div class="pengurus-card border-bottom border-primary border-5">
+                        <div class="img-pengurus-wrapper">
+                            <img src="ketua.jpg" alt="Ketua">
+                        </div>
+                        <div class="pengurus-nama">Arief Fauzi Mansur, S.Pd.</div>
+                        <div class="pengurus-jabatan text-primary">Ketua Cabang PGRI Samarang</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hierarki-garis"></div>
+
+            <!-- TINGKAT 2: WAKIL KETUA (2 Kolom Berdampingan) -->
+            <div class="row justify-content-center mb-3 g-4">
+                <div class="col-lg-4 col-md-5 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper">
+                            <img src="https://placehold.co/200x200/eeeeee/666666?text=Wakil+1" alt="Wakil Ketua 1">
+                        </div>
+                        <div class="pengurus-nama">Rian Dermawan, S.Pd.</div>
+                        <div class="pengurus-jabatan">Wakil Ketua 1</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-5 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper">
+                            <img src="https://placehold.co/200x200/eeeeee/666666?text=Wakil+2" alt="Wakil Ketua 2">
+                        </div>
+                        <div class="pengurus-nama">M. Iqbal Faturahman, S.Pd.</div>
+                        <div class="pengurus-jabatan">Wakil Ketua 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hierarki-garis"></div>
+
+            <!-- TINGKAT 3: SEKRETARIS & BENDAHARA (3 Kolom Berdampingan) -->
+            <div class="row justify-content-center mb-4 g-4">
+                <div class="col-lg-4 col-md-4 col-10">
+                    <div class="pengurus-card border-bottom border-success border-5">
+                        <div class="img-pengurus-wrapper">
+                            <img src="https://placehold.co/200x200/eeeeee/666666?text=Sekretaris" alt="Sekretaris">
+                        </div>
+                        <div class="pengurus-nama">Teguh Pramegar, S.Pd.</div>
+                        <div class="pengurus-jabatan text-success">Sekretaris</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-10">
+                    <div class="pengurus-card border-bottom border-success border-5">
+                        <div class="img-pengurus-wrapper">
+                            <img src="https://placehold.co/200x200/eeeeee/666666?text=Wasek" alt="Wakil Sekretaris">
+                        </div>
+                        <div class="pengurus-nama">Hendi Munawar, S.Pd.I.</div>
+                        <div class="pengurus-jabatan text-success">Wakil Sekretaris</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-10">
+                    <div class="pengurus-card border-bottom border-warning border-5">
+                        <div class="img-pengurus-wrapper">
+                            <img src="https://placehold.co/200x200/eeeeee/666666?text=Bendahara" alt="Bendahara">
+                        </div>
+                        <div class="pengurus-nama">Yusni Saeful Mila, S.Pd.</div>
+                        <div class="pengurus-jabatan text-warning">Bendahara</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TINGKAT 4: 16 KETUA BIDANG (Grid 4 Kolom) -->
+            <div class="text-center mt-5">
+                <div class="bidang-title">BIDANG - BIDANG ORGANISASI</div>
+            </div>
+            
+            <div class="row justify-content-center g-4">
+                <!-- Bidang 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+1" alt="Bidang"></div>
+                        <div class="pengurus-nama">Dede Sumarna, S.Pd.</div>
+                        <div class="pengurus-jabatan">Bidang Organisasi & Kaderisasi</div>
+                    </div>
+                </div>
+                <!-- Bidang 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+2" alt="Bidang"></div>
+                        <div class="pengurus-nama">Lina Kurniati, S.Pd.</div>
+                        <div class="pengurus-jabatan">Pengembangan Profersi & Karier GTK</div>
+                    </div>
+                </div>
+                <!-- Bidang 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+3" alt="Bidang"></div>
+                        <div class="pengurus-nama">Yayat Dimyati, S.Ag.</div>
+                        <div class="pengurus-jabatan">Penegakan Kode Etik & Advokasi</div>
+                    </div>
+                </div>
+                <!-- Bidang 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+4" alt="Bidang"></div>
+                        <div class="pengurus-nama">Samsul Basar, S.Ag.</div>
+                        <div class="pengurus-jabatan">Bantuan Hukum & Perlidungan Profesi</div>
+                    </div>
+                </div>
+                <!-- Bidang 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+5" alt="Bidang"></div>
+                        <div class="pengurus-nama">Hj. Empat Patmawati, S.Pd.</div>
+                        <div class="pengurus-jabatan">Penelitian & Pengabdian Masyarakat</div>
+                    </div>
+                </div>
+                <!-- Bidang 6 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+6" alt="Bidang"></div>
+                        <div class="pengurus-nama">Nurliani Siti Nurjanah, S.Pd.</div>
+                        <div class="pengurus-jabatan">Pembinaan & Pengembangan Lemdik</div>
+                    </div>
+                </div>
+                <!-- Bidang 7 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+7" alt="Bidang"></div>
+                        <div class="pengurus-nama">Rana Mardiana, S.Pd.,M.Pd.</div>
+                        <div class="pengurus-jabatan">Kerjasama & Pengembangan usaha</div>
+                    </div>
+                </div>
+                <!-- Bidang 8 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+8" alt="Bidang"></div>
+                        <div class="pengurus-nama">Ujang Karim, S.Pd.</div>
+                        <div class="pengurus-jabatan">Kesejahteraan & Ketenagakerjaan</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+9" alt="Bidang"></div>
+                        <div class="pengurus-nama">Lili Siti Nurlili, S.Pd.</div>
+                        <div class="pengurus-jabatan">Pemberdayaan Perempuan</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+10" alt="Bidang"></div>
+                        <div class="pengurus-nama">Rina Farida, S.Pd.</div>
+                        <div class="pengurus-jabatan">Komunikasi & Informasi</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="uus_kusaeri.jpg" alt="Bidang"></div>
+                        <div class="pengurus-nama">Uus Kusaeri, S.Pd.SD.</div>
+                        <div class="pengurus-jabatan">Keanggotaan & Digitalisasi Organisasi</div>
+                    </div>
+                </div><div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+12" alt="Bidang"></div>
+                        <div class="pengurus-nama">Mamun Alamsah, S.Pd.</div>
+                        <div class="pengurus-jabatan">Olahraga & Seni Budaya I</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+13" alt="Bidang"></div>
+                        <div class="pengurus-nama">Rita Herlina, S.Pd.</div>
+                        <div class="pengurus-jabatan">Olahraga & Seni Budaya II</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+14" alt="Bidang"></div>
+                        <div class="pengurus-nama">Tatang M Tamimi, M.Ag.</div>
+                        <div class="pengurus-jabatan">Pembinaan Mental & Karakter Bangsa</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+15" alt="Bidang"></div>
+                        <div class="pengurus-nama">H. Aceng Juanda, S.Pd.</div>
+                        <div class="pengurus-jabatan">Hubungan Lembaga, Badan & Organisasi Lainnya</div>
+                    </div>
+                </div>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-10">
+                    <div class="pengurus-card">
+                        <div class="img-pengurus-wrapper"><img src="https://placehold.co/200x200/eeeeee/666666?text=Bidang+16" alt="Bidang"></div>
+                        <div class="pengurus-nama">Imas, S.Pd.</div>
+                        <div class="pengurus-jabatan">Pengembangan PAUDNI, Pendidikan Khusus, & Non Formal</div>
+                    </div>
+                </div>
+
+    </div>
+	</div>
+
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
