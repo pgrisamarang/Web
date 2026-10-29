@@ -619,48 +619,46 @@
 
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    let namaRanting = data.ranting ? data.ranting.trim() : "Ranting Belum Ditentukan";
                     
-                    if (!rekapRanting[namaRanting]) {
-                        rekapRanting[namaRanting] = {
+                    // Abaikan jika tidak ada data ranting
+                    if (!data.ranting || data.ranting.trim() === "" || data.ranting === "-") return;
+
+                    let ranting = data.ranting.trim();
+
+                    // Buat wadah rekap jika ranting ini baru pertama kali ditemukan
+                    if (!rekapRanting[ranting]) {
+                        rekapRanting[ranting] = {
                             sekolah: new Set(),
+                            tingkat: new Set(),
                             jumlahAnggota: 0,
-                            ketua: "Belum Ada Data",
-                            tingkat: new Set()
+                            ketua: "Belum Ada Data Ketua"
                         };
                     }
 
-                    rekapRanting[namaRanting].jumlahAnggota++;
+                    // 1. Hitung Jumlah Anggota
+                    rekapRanting[ranting].jumlahAnggota++;
 
+                    // 2. Rekap Sekolah & Tingkat (SD, SMP, SMA, TK)
                     if (data.sekolah && data.sekolah.trim() !== "") {
-                        let namaSekolah = data.sekolah.trim().toUpperCase();
-                        rekapRanting[namaRanting].sekolah.add(namaSekolah);
+                        let namaSekolah = data.sekolah.trim();
+                        rekapRanting[ranting].sekolah.add(namaSekolah);
 
-                        let kataKata = namaSekolah.split(/[\s,.-]+/); 
-                        kataKata.forEach(kata => {
-                            if (["SD", "SDN", "SDIT", "SDI", "MI", "MIS"].includes(kata)) rekapRanting[namaRanting].tingkat.add("SD");
-                            if (["SMP", "SMPN", "SMPIT", "SMPI", "MTS", "MTSN", "MTSS"].includes(kata)) rekapRanting[namaRanting].tingkat.add("SMP");
-                            if (["SMA", "SMAN", "SMK", "SMKN", "MA", "MAN", "MAS"].includes(kata)) rekapRanting[namaRanting].tingkat.add("SMA");
-                            if (["TK", "PAUD", "RA", "KOBER", "TPA", "SPS", "TKIT"].includes(kata)) rekapRanting[namaRanting].tingkat.add("TK");
-                        });
+                        let sekUpper = namaSekolah.toUpperCase();
+                        if (sekUpper.includes("SD") || sekUpper.includes("MI")) rekapRanting[ranting].tingkat.add("SD");
+                        if (sekUpper.includes("SMP") || sekUpper.includes("MTS")) rekapRanting[ranting].tingkat.add("SMP");
+                        if (sekUpper.includes("SMA") || sekUpper.includes("SMK") || sekUpper.includes("MA")) rekapRanting[ranting].tingkat.add("SMA");
+                        if (sekUpper.includes("TK") || sekUpper.includes("PAUD")) rekapRanting[ranting].tingkat.add("TK");
                     }
 
-                    if (data.jabatan && data.jabatan.toLowerCase().includes("ketua ranting")) {
-                        rekapRanting[namaRanting].ketua = data.nama;
+                    // 3. INI PERBAIKANNYA: Deteksi Spesifik KETUA RANTING
+                    // Harus ada kata "ketua", TIDAK BOLEH ada "wakil", dan TIDAK BOLEH ada "cabang"
+                    let jab = (data.jabatan || "").toLowerCase().trim();
+                    if (jab.includes("ketua") && !jab.includes("wakil") && !jab.includes("cabang")) {
+                        rekapRanting[ranting].ketua = data.nama;
                     }
                 });
 
-                tbody.innerHTML = "";
-
-                let nomor = 1;
-                let namaNamaRanting = Object.keys(rekapRanting).sort();
-
-                if (namaNamaRanting.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="text-center">Belum ada data anggota di database.</td></tr>';
-                    return;
-                }
-
-                // Mulai mencetak ke dalam tabel
+                // Mulai mencetak ke dalam tabel HTML
                 namaNamaRanting.forEach((ranting) => {
                     let info = rekapRanting[ranting];
 
@@ -678,10 +676,8 @@
                     });
                     if (htmlTingkat === "") htmlTingkat = '<span class="badge bg-secondary">Umum</span>';
 
-                    // BIKIN URL YANG AMAN DARI SPASI (encodeURIComponent)
                     let linkRanting = encodeURIComponent(ranting);
 
-                    // INI KODE BARU YANG DITEMPEL: Link sekarang menuju ke pengurus-ranting.html
                     let baris = `
                         <tr>
                             <td class="text-center align-middle">${nomor++}</td>
@@ -694,7 +690,7 @@
                             <td class="align-middle small">${daftarSekolah}</td>
                             <td class="text-center align-middle"><span class="badge bg-secondary fs-6">${info.sekolah.size}</span></td>
                             <td class="text-center align-middle"><span class="badge bg-success fs-6">${info.jumlahAnggota}</span></td>
-                            <td class="align-middle">${info.ketua}</td>
+                            <td class="align-middle fw-bold">${info.ketua}</td>
                         </tr>
                     `;
                     tbody.innerHTML += baris;
