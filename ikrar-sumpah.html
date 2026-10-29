@@ -7,7 +7,7 @@
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#004a99">
-    <link rel="icon" type="image/png" href="logo_pgri.png">
+    <link rel="icon" type="image/png" href="logo-pgri.png">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -300,7 +300,7 @@
                         <h5 class="fw-bold mb-1"><i class="fas fa-file-word me-2"></i> Unduh Teks Resmi</h5>
                         <p class="mb-0 small opacity-90">Naskah lengkap Ikrar & Sumpah Guru Indonesia dalam format dokumen resmi (.docx).</p>
                     </div>
-                    <a href="unduhan.html" class="btn btn-light fw-bold px-4 py-2 text-danger shadow-sm">
+                    <a href="https://pgrisamarang.github.io/Web/ikrar_dan_sumpah_guru.docx" class="btn btn-light fw-bold px-4 py-2 text-danger shadow-sm">
                         <i class="fas fa-download me-2"></i> Unduh DOCX
                     </a>
                 </div>
@@ -312,22 +312,27 @@
                 <div class="sticky-sidebar">
                     <div class="toc-card">
                         
-                        <div class="toc-header">
+                        <div class="toc-header" id="btnToggleToc" style="cursor: pointer;" title="Klik untuk melipat/membuka daftar isi">
                             <span><i class="fas fa-list-ul text-danger me-2"></i> Daftar Isi</span>
-                            <span class="badge bg-light text-secondary rounded-pill"><i class="fas fa-chevron-up"></i></span>
+                            <button class="btn btn-sm btn-light rounded-circle border-0 text-secondary" type="button" aria-label="Toggle Daftar Isi">
+                                <i class="fas fa-chevron-up" id="tocChevronIcon" style="transition: transform 0.3s ease;"></i>
+                            </button>
                         </div>
 
-                        <div class="toc-section-title">BAGIAN HALAMAN</div>
-                        <ul class="toc-list">
-                            <li><a href="#ikrar" class="toc-link active"><i class="fas fa-bookmark me-2 text-danger" style="font-size:0.8rem;"></i> Ikrar Guru Indonesia</a></li>
-                            <li><a href="#sumpah" class="toc-link"><i class="fas fa-ribbon me-2 text-danger" style="font-size:0.8rem;"></i> Sumpah Guru Indonesia</a></li>
-                        </ul>
+                        <!-- KONTEN DAFTAR ISI (DAPAT DILIPAT) -->
+                        <div id="tocContent" style="transition: all 0.3s ease; overflow: hidden;">
+                            <div class="toc-section-title">BAGIAN HALAMAN</div>
+                            <ul class="toc-list">
+                                <li><a href="#ikrar" class="toc-link active" data-target="ikrar"><i class="fas fa-bookmark me-2 text-danger" style="font-size:0.8rem;"></i> Ikrar Guru Indonesia</a></li>
+                                <li><a href="#sumpah" class="toc-link" data-target="sumpah"><i class="fas fa-ribbon me-2 text-danger" style="font-size:0.8rem;"></i> Sumpah Guru Indonesia</a></li>
+                            </ul>
 
-                        <div class="toc-section-title mt-4">HALAMAN TERKAIT</div>
-                        <ul class="toc-list">
-                            <li><a href="pengurus-cabang.html"><i class="fas fa-sitemap me-2 text-secondary" style="font-size:0.8rem;"></i> Pengurus Cabang</a></li>
-                            <li><a href="unduhan.html"><i class="fas fa-folder-open me-2 text-secondary" style="font-size:0.8rem;"></i> Dokumen Resmi</a></li>
-                        </ul>
+                            <div class="toc-section-title mt-4">HALAMAN TERKAIT</div>
+                            <ul class="toc-list">
+                                <li><a href="pengurus-cabang.html"><i class="fas fa-sitemap me-2 text-secondary" style="font-size:0.8rem;"></i> Pengurus Cabang</a></li>
+                                <li><a href="unduhan.html"><i class="fas fa-folder-open me-2 text-secondary" style="font-size:0.8rem;"></i> Dokumen Resmi</a></li>
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
@@ -337,25 +342,106 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="pt-5 border-top">
-        <div class="container text-center">
-            <p class="text-secondary small">&copy; 2026 PGRI Cabang Samarang. All Rights Reserved.</p>
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
+                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
+                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row pb-3 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
+                </div>
+                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- SCRIPT SMOOTH HIGHLIGHT DAFTAR ISI -->
+    <!-- SCRIPT FITUR TOGGLE HIDE & SCROLLSPY OTOMATIS -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const links = document.querySelectorAll(".toc-link");
-            
-            links.forEach(link => {
-                link.addEventListener("click", function() {
-                    links.forEach(l => l.classList.remove("active"));
-                    this.classList.add("active");
-                });
+            // ==========================================
+            // 1. FITUR FOLD / UNFOLD (TOGGLE HIDE DAFTAR ISI)
+            // ==========================================
+            const btnToggle = document.getElementById("btnToggleToc");
+            const tocContent = document.getElementById("tocContent");
+            const chevronIcon = document.getElementById("tocChevronIcon");
+            let isCollapsed = false;
+
+            btnToggle.addEventListener("click", function() {
+                isCollapsed = !isCollapsed;
+                if (isCollapsed) {
+                    tocContent.style.display = "none";
+                    chevronIcon.style.transform = "rotate(180deg)"; // Panah berputar ke bawah
+                } else {
+                    tocContent.style.display = "block";
+                    chevronIcon.style.transform = "rotate(0deg)"; // Panah kembali ke atas
+                }
             });
+
+            // ==========================================
+            // 2. FITUR SCROLLSPY (PENANDA OTOMATIS BERGULIR)
+            // ==========================================
+            const sections = document.querySelectorAll(".scroll-target");
+            const tocLinks = document.querySelectorAll(".toc-link");
+
+            function updateActiveLinkOnScroll() {
+                let currentSectionId = "";
+                const scrollPos = window.scrollY + 140; // Offset posisi scroll layar
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        currentSectionId = section.getAttribute("id");
+                    }
+                });
+
+                // Jika di paling atas halaman
+                if (window.scrollY < 200) {
+                    currentSectionId = "ikrar";
+                }
+
+                // Update kelas active pada link
+                tocLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("data-target") === currentSectionId) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+
+            // Jalankan saat scroll dan saat pertama kali dimuat
+            window.addEventListener("scroll", updateActiveLinkOnScroll);
+            updateActiveLinkOnScroll();
         });
     </script>
 </body>
