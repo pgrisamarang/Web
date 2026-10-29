@@ -5,8 +5,8 @@ const CACHE_NAME = 'pgri-samarang-v1';
 const urlsToCache = [
   './',
   './index.html',
-  './logo-pgri.png',
-  './logo-pgri.jpg'
+  './logo_pgri.png',
+  './logo_pgri.jpg'
 ];
 
 // PROSES INSTALL SERVICE WORKER (Sihir Dimulai)
