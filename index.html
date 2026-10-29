@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PGRI Cabang Kec. Samarang</title>
+    <title>PGRI Cabang Samarang</title>
 	<!-- ========================================== -->
     <!-- KTP WEBSITE (SEO) AGAR DILIRIK ROBOT GOOGLE -->
     <!-- ========================================== -->
@@ -17,7 +17,13 @@
     <meta itemprop="description" content="Situs Resmi PGRI Cabang Kecamatan Samarang. Wadah informasi, karya, dan perlindungan profesi guru.">
     <meta itemprop="image" content="https://pgrisamarang.github.io/Web/ketuapgri.jpg">
     <link rel="image_src" href="https://pgrisamarang.github.io/Web/ketuapgri.jpg">
-    
+
+	<!-- ========================================== -->
+    <!-- KODE AJAIB PWA (APP ANDROID) -->
+    <!-- ========================================== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#004a99">
+    <link rel="apple-touch-icon" href="logo-pgri.png">
     <!-- Favicon / Ikon Tab -->
     <link rel="icon" type="image/png" href="ketua_pgri2.png">
     
@@ -636,6 +642,22 @@
                 btnCariNPA.disabled = false;
             }
         });
+
+        // ==========================================
+        // MESIN PEMANGGIL PWA (SERVICE WORKER)
+        // ==========================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('Mesin PWA Sukses Didaftarkan!', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('Mesin PWA Gagal:', err);
+                    });
+            });
+        }
     </script>
 </body>
+</html>
 </html>
