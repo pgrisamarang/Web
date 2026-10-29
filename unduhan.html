@@ -75,7 +75,7 @@
     <div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #004a99 0%, #007bff 100%);">
         <div class="container text-center">
             <h1 class="display-5 fw-bold"><i class="fas fa-folder-open me-2"></i> Pusat Unduhan</h1>
-            <p class="lead mb-0">Dokumen administrasi, SK, dan Formulir Keanggotaan PGRI Samarang</p>
+            <p class="lead mb-0">Dokumen administrasi, SK, Formulir, dan Aplikasi Resmi PGRI Samarang</p>
         </div>
     </div>
 
@@ -83,6 +83,19 @@
     <div class="container py-5 mt-3 mb-5">
         <div class="row">
             <div class="col-lg-8 mx-auto">
+                
+                <!-- FITUR BARU: TOMBOL INSTALL APLIKASI (Disembunyikan jika HP belum siap/sudah install) -->
+                <div id="wadahInstallApp" class="app-card p-4 mb-5 d-none text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-3">
+                        <img src="logo-pgri.png" alt="Icon App" style="width: 60px; height: 60px; background: white; border-radius: 10px; padding: 5px;" class="me-3 shadow">
+                        <div class="text-start">
+                            <h4 class="fw-bold mb-0 text-warning">Aplikasi PGRI Samarang</h4>
+                            <small class="opacity-75">Pasang di layar utama HP Anda (PWA)</small>
+                        </div>
+                    </div>
+                    <p class="small mb-3">Dapatkan akses lebih cepat ke database NPA, Berita, dan Layanan LKBH tanpa harus membuka browser lagi.</p>
+                    <button id="btnInstallApp" class="btn btn-warning fw-bold btn-lg w-100 shadow"><i class="fas fa-download me-2"></i> INSTALL APLIKASI SEKARANG</button>
+                </div>
                 
                 <h5 class="fw-bold mb-3 text-primary">Kategori: Formulir Organisasi</h5>
                 <div class="download-item p-4 mb-3 d-flex justify-content-between align-items-center">
@@ -105,13 +118,6 @@
                     <div>
                         <h6 class="fw-bold mb-1">AD/ART PGRI Terbaru Versi Kongres (PDF)</h6>
                         <small class="text-muted">Pusat PB PGRI | Ukuran: 5.4 MB</small>
-                    </div>
-                    <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
-                </div>
-                <div class="download-item p-4 mb-3 d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="fw-bold mb-1">Buku Panduan Pembayaran Iuran Ranting (PDF)</h6>
-                        <small class="text-muted">Cabang Samarang | Ukuran: 2.1 MB</small>
                     </div>
                     <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-download me-1"></i> Unduh</a>
                 </div>
