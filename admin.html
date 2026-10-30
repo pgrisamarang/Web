@@ -150,10 +150,40 @@
                                 <input type="number" id="npaAnggota" class="form-control" placeholder="Contoh: 123456789" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                        <div class="d-grid d-md-flex justify-content-md-end">
-                            <button type="button" id="btnBatalEdit" class="btn btn-secondary me-md-2 mb-2 mb-md-0">Batal</button>
-                            <button type="submit" id="btnUpdateAnggota" class="btn btn-info text-white fw-bold">
-                                <i class="fas fa-save me-2"></i> Update Data
+                                <label class="form-label fw-bold">Nama Lengkap</label>
+                                <input type="text" id="namaAnggota" class="form-control" placeholder="Contoh: Budi Santoso, S.Pd." required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Jenis Kelamin</label>
+                                <select id="jkAnggota" class="form-select" required>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Unit Kerja / Sekolah</label>
+                                <input type="text" id="sekolahAnggota" class="form-control" placeholder="Contoh: SDN 1 Samarang" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Ranting</label>
+                                <input type="text" id="rantingAnggota" class="form-control" placeholder="Contoh: Cintarakyat" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Jabatan</label>
+                                <input type="text" id="jabatanAnggota" class="form-control" placeholder="Contoh: Anggota / Ketua Ranting" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Foto Anggota (Opsional)</label>
+                            <input type="file" id="fotoAnggota" class="form-control" accept="image/*">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" id="btnSimpanAnggota" class="btn btn-success btn-lg fw-bold">
+                                <i class="fas fa-save me-2"></i> Simpan Data Anggota
                             </button>
                         </div>
                     </form>
@@ -225,9 +255,9 @@
 
     <!-- Script Firebase & Logika Simpan Data -->
     <script type="module">
-        // 1. Import Alat Firebase (Tambahkan auth)
+        // 1. Import Alat Firebase (Tambahkan auth & orderBy)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp, getDocs, query, where, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, getDocs, query, where, doc, updateDoc, deleteDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
         // 2. Kunci Firebase Bos Uus
@@ -422,8 +452,15 @@
             tabelDaftarBerita.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i> Memuat daftar postingan...</td></tr>';
             
             try {
-                const q = query(collection(db, "postingan"), orderBy("tanggalDibuat", "desc"));
-                const snapshot = await getDocs(q);
+                let snapshot;
+                try {
+                    const q = query(collection(db, "postingan"), orderBy("tanggalDibuat", "desc"));
+                    snapshot = await getDocs(q);
+                } catch (eQuery) {
+                    console.warn("Query orderBy gagal, memuat semua postingan:", eQuery);
+                    snapshot = await getDocs(collection(db, "postingan"));
+                }
+
                 cacheSemuaBerita = [];
                 let nomor = 1;
                 tabelDaftarBerita.innerHTML = "";
@@ -433,11 +470,23 @@
                     return;
                 }
 
+                let items = [];
                 snapshot.forEach((docSnap) => {
                     const data = docSnap.data();
                     data._id = docSnap.id;
-                    cacheSemuaBerita.push(data);
+                    items.push(data);
+                });
 
+                // Urutkan berdasarkan tanggalDibuat secara aman di JavaScript
+                items.sort((a, b) => {
+                    let tA = a.tanggalDibuat && a.tanggalDibuat.toMillis ? a.tanggalDibuat.toMillis() : 0;
+                    let tB = b.tanggalDibuat && b.tanggalDibuat.toMillis ? b.tanggalDibuat.toMillis() : 0;
+                    return tB - tA;
+                });
+
+                cacheSemuaBerita = items;
+
+                items.forEach((data) => {
                     const thumb = data.gambar 
                         ? `<img src="${data.gambar}" class="rounded shadow-sm" style="width: 45px; height: 45px; object-fit: cover;">`
                         : `<span class="badge bg-secondary">Tanpa Foto</span>`;
@@ -450,8 +499,8 @@
                             <td><span class="badge bg-primary">${data.kategori || "Umum"}</span></td>
                             <td>${data.penulis || "Admin"}</td>
                             <td class="text-center">
-                                <button class="btn btn-warning btn-sm py-0 px-2 me-1 btn-edit-berita" data-id="${docSnap.id}" title="Edit Postingan"><i class="fas fa-pencil-alt text-dark"></i></button>
-                                <button class="btn btn-danger btn-sm py-0 px-2 btn-hapus-berita" data-id="${docSnap.id}" title="Hapus Postingan"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-warning btn-sm py-0 px-2 me-1 btn-edit-berita" data-id="${data._id}" title="Edit Postingan"><i class="fas fa-pencil-alt text-dark"></i></button>
+                                <button class="btn btn-danger btn-sm py-0 px-2 btn-hapus-berita" data-id="${data._id}" title="Hapus Postingan"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     `;
