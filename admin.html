@@ -141,9 +141,14 @@
 
                 <!-- FORM TAMBAH DATA ANGGOTA (BARU) -->
                 <div class="card card-form p-4 mt-4 mb-5 border-top border-success border-4">
-                    <h5 class="fw-bold mb-4 border-bottom pb-3"><i class="fas fa-user-plus text-success me-2"></i> Tambah Data Anggota (NPA)</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                        <h5 class="fw-bold mb-0" id="judulFormAnggota"><i class="fas fa-user-plus text-success me-2"></i> Tambah Data Anggota (NPA)</h5>
+                        <button type="button" id="btnBatalEditAnggota" class="btn btn-sm btn-secondary d-none"><i class="fas fa-times me-1"></i> Batal Edit</button>
+                    </div>
                     
                     <form id="formAnggota">
+                        <input type="hidden" id="idAnggotaEdit" value="">
+                        
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Nomor Pokok Anggota (NPA)</label>
@@ -180,6 +185,7 @@
                         <div class="mb-3">
                             <label class="form-label fw-bold">Foto Anggota (Opsional)</label>
                             <input type="file" id="fotoAnggota" class="form-control" accept="image/*">
+                            <small class="text-muted">Biarkan kosong jika mengedit anggota dan tidak ingin mengganti foto lama.</small>
                         </div>
                         <div class="d-grid">
                             <button type="submit" id="btnSimpanAnggota" class="btn btn-success btn-lg fw-bold">
@@ -187,6 +193,38 @@
                             </button>
                         </div>
                     </form>
+                </div>
+
+                <!-- TABEL KELOLA & EDIT DATA ANGGOTA (FITUR BARU) -->
+                <div class="card card-form p-4 mt-4 mb-5 border-top border-success border-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3 flex-wrap gap-2">
+                        <h5 class="fw-bold mb-0"><i class="fas fa-users text-success me-2"></i> Kelola & Edit Data Anggota</h5>
+                        <div class="d-flex gap-2">
+                            <input type="text" id="inputCariAnggotaAdmin" class="form-control form-control-sm" placeholder="Cari NPA, Nama, Sekolah..." style="max-width: 250px;">
+                            <button id="btnRefreshAnggota" class="btn btn-outline-secondary btn-sm"><i class="fas fa-sync-alt me-1"></i> Refresh</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive bg-white rounded shadow-sm border" style="max-height: 450px;">
+                        <table class="table table-sm table-striped table-hover mb-0 align-middle">
+                            <thead class="table-dark text-center sticky-top">
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="10%">Foto</th>
+                                    <th width="15%">NPA</th>
+                                    <th width="25%">Nama Lengkap</th>
+                                    <th width="20%">Sekolah & Ranting</th>
+                                    <th width="13%">Jabatan</th>
+                                    <th width="12%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelDaftarAnggotaAdmin">
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i> Memuat daftar anggota...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- ================= END FITUR EDIT ================= -->
 
@@ -555,28 +593,44 @@
 
         btnRefreshBerita.addEventListener("click", muatDaftarBerita);
 
-        // 5. LOGIKA UNTUK MENYIMPAN DATA ANGGOTA BARU
+        // 5. LOGIKA UNTUK MENYIMPAN & EDIT DATA ANGGOTA
         const formAnggota = document.getElementById("formAnggota");
         const btnSimpanAnggota = document.getElementById("btnSimpanAnggota");
+        const idAnggotaEdit = document.getElementById("idAnggotaEdit");
+        const judulFormAnggota = document.getElementById("judulFormAnggota");
+        const btnBatalEditAnggota = document.getElementById("btnBatalEditAnggota");
+        let fotoLamaAnggota = "";
+        let cacheSemuaAnggota = [];
+
+        function resetFormAnggota() {
+            formAnggota.reset();
+            idAnggotaEdit.value = "";
+            fotoLamaAnggota = "";
+            judulFormAnggota.innerHTML = '<i class="fas fa-user-plus text-success me-2"></i> Tambah Data Anggota (NPA)';
+            btnSimpanAnggota.innerHTML = '<i class="fas fa-save me-2"></i> Simpan Data Anggota';
+            btnBatalEditAnggota.classList.add("d-none");
+        }
+
+        btnBatalEditAnggota.addEventListener("click", resetFormAnggota);
 
         formAnggota.addEventListener("submit", async function(e) {
             e.preventDefault(); 
             
-            btnSimpanAnggota.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Memproses Foto & Menyimpan...';
+            btnSimpanAnggota.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Memproses...';
             btnSimpanAnggota.disabled = true;
 
+            const idEdit = idAnggotaEdit.value;
             const npa = document.getElementById("npaAnggota").value;
             const nama = document.getElementById("namaAnggota").value;
             const jk = document.getElementById("jkAnggota").value;
             const sekolah = document.getElementById("sekolahAnggota").value;
             const ranting = document.getElementById("rantingAnggota").value;
             const jabatan = document.getElementById("jabatanAnggota").value;
-            const fotoInput = document.getElementById("fotoAnggota"); // Ambil file fotonya
+            const fotoInput = document.getElementById("fotoAnggota");
 
             try {
-                let fotoBase64 = "";
+                let fotoBase64 = fotoLamaAnggota;
 
-                // JURUS KOMPRES & TANAM FOTO (SAMA SEPERTI BERITA)
                 if (fotoInput.files.length > 0) {
                     const fileFoto = fotoInput.files[0];
                     fotoBase64 = await new Promise((resolve) => {
@@ -587,7 +641,7 @@
                             img.src = event.target.result;
                             img.onload = function() {
                                 const canvas = document.createElement('canvas');
-                                const MAX_WIDTH = 400; // Ukuran foto ID Card (tidak perlu terlalu besar)
+                                const MAX_WIDTH = 400;
                                 let width = img.width;
                                 let height = img.height;
 
@@ -607,20 +661,35 @@
                     });
                 }
 
-                // Simpan ke database
-                await addDoc(collection(db, "anggota"), {
-                    npa: String(npa),
-                    nama: nama,
-                    jk: jk,
-                    sekolah: sekolah,
-                    ranting: ranting,
-                    jabatan: jabatan,
-                    foto: fotoBase64 // Foto sudah berbentuk teks rahasia anti blokir
-                });
+                if (idEdit) {
+                    // UPDATE DATA
+                    await updateDoc(doc(db, "anggota", idEdit), {
+                        npa: String(npa),
+                        nama: nama,
+                        jk: jk,
+                        sekolah: sekolah,
+                        ranting: ranting,
+                        jabatan: jabatan,
+                        foto: fotoBase64
+                    });
+                    notifikasi.innerHTML = '<i class="fas fa-check-circle me-2"></i> <strong>Berhasil!</strong> Data Anggota telah diperbarui.';
+                } else {
+                    // TAMBAH DATA BARU
+                    await addDoc(collection(db, "anggota"), {
+                        npa: String(npa),
+                        nama: nama,
+                        jk: jk,
+                        sekolah: sekolah,
+                        ranting: ranting,
+                        jabatan: jabatan,
+                        foto: fotoBase64
+                    });
+                    notifikasi.innerHTML = '<i class="fas fa-check-circle me-2"></i> <strong>Berhasil!</strong> Data Anggota tersimpan.';
+                }
                 
-                notifikasi.innerHTML = '<i class="fas fa-check-circle me-2"></i> <strong>Berhasil!</strong> Data Anggota tersimpan.';
                 notifikasi.classList.remove("d-none");
-                formAnggota.reset();
+                resetFormAnggota();
+                muatDaftarAnggota();
                 setTimeout(() => { notifikasi.classList.add("d-none"); }, 4000);
 
             } catch (error) {
@@ -629,10 +698,137 @@
                 notifikasiError.classList.remove("d-none");
                 setTimeout(() => { notifikasiError.classList.add("d-none"); }, 4000);
             } finally {
-                btnSimpanAnggota.innerHTML = '<i class="fas fa-save me-2"></i> Simpan Data Anggota';
+                btnSimpanAnggota.innerHTML = idAnggotaEdit.value ? '<i class="fas fa-save me-2"></i> Update Data Anggota' : '<i class="fas fa-save me-2"></i> Simpan Data Anggota';
                 btnSimpanAnggota.disabled = false;
             }
         });
+
+        // LOGIKA KELOLA TABEL DAFTAR ANGGOTA
+        const tabelDaftarAnggotaAdmin = document.getElementById("tabelDaftarAnggotaAdmin");
+        const btnRefreshAnggota = document.getElementById("btnRefreshAnggota");
+        const inputCariAnggotaAdmin = document.getElementById("inputCariAnggotaAdmin");
+
+        async function muatDaftarAnggota() {
+            if (!tabelDaftarAnggotaAdmin) return;
+            tabelDaftarAnggotaAdmin.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i> Memuat daftar anggota...</td></tr>';
+            
+            try {
+                const snapshot = await getDocs(collection(db, "anggota"));
+                cacheSemuaAnggota = [];
+                
+                if (snapshot.empty) {
+                    tabelDaftarAnggotaAdmin.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Belum ada data anggota di database.</td></tr>';
+                    return;
+                }
+
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    data._id = docSnap.id;
+                    cacheSemuaAnggota.push(data);
+                });
+
+                // Urutkan berdasarkan Nama (A-Z)
+                cacheSemuaAnggota.sort((a, b) => (a.nama || "").localeCompare(b.nama || ""));
+                tampilkanTabelAnggota(cacheSemuaAnggota);
+
+            } catch (error) {
+                console.error("Gagal muat daftar anggota:", error);
+                tabelDaftarAnggotaAdmin.innerHTML = '<tr><td colspan="7" class="text-center text-danger py-4">Gagal memuat data anggota. Cek koneksi internet.</td></tr>';
+            }
+        }
+
+        function tampilkanTabelAnggota(listData) {
+            tabelDaftarAnggotaAdmin.innerHTML = "";
+            if (listData.length === 0) {
+                tabelDaftarAnggotaAdmin.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Data anggota tidak ditemukan.</td></tr>';
+                return;
+            }
+
+            let nomor = 1;
+            listData.forEach((data) => {
+                let fotoThumb = data.foto && data.foto.trim() !== "" 
+                    ? `<img src="${data.foto}" class="rounded shadow-sm" style="width: 40px; height: 50px; object-fit: cover;">`
+                    : `<span class="badge bg-secondary">Tanpa Foto</span>`;
+
+                tabelDaftarAnggotaAdmin.innerHTML += `
+                    <tr>
+                        <td class="text-center fw-bold">${nomor++}</td>
+                        <td class="text-center">${fotoThumb}</td>
+                        <td class="font-monospace fw-bold">${data.npa || "-"}</td>
+                        <td class="fw-bold">${data.nama || "-"}</td>
+                        <td><small class="d-block text-dark fw-semibold">${data.sekolah || "-"}</small><small class="text-muted">Ranting: ${data.ranting || "-"}</small></td>
+                        <td><span class="badge bg-light text-dark border">${data.jabatan || "Anggota"}</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-warning btn-sm py-0 px-2 me-1 btn-edit-anggota" data-id="${data._id}" title="Edit Data Anggota"><i class="fas fa-pencil-alt text-dark"></i></button>
+                            <button class="btn btn-danger btn-sm py-0 px-2 btn-hapus-anggota" data-id="${data._id}" title="Hapus Data Anggota"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            // Listener Tombol Edit Anggota
+            document.querySelectorAll(".btn-edit-anggota").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const id = this.getAttribute("data-id");
+                    const item = cacheSemuaAnggota.find(a => a._id === id);
+                    if (item) {
+                        idAnggotaEdit.value = item._id;
+                        document.getElementById("npaAnggota").value = item.npa || "";
+                        document.getElementById("namaAnggota").value = item.nama || "";
+                        document.getElementById("jkAnggota").value = item.jk || "L";
+                        document.getElementById("sekolahAnggota").value = item.sekolah || "";
+                        document.getElementById("rantingAnggota").value = item.ranting || "";
+                        document.getElementById("jabatanAnggota").value = item.jabatan || "";
+                        fotoLamaAnggota = item.foto || "";
+
+                        judulFormAnggota.innerHTML = '<i class="fas fa-user-edit text-warning me-2"></i> Edit Data Anggota (NPA: ' + (item.npa || '') + ')';
+                        btnSimpanAnggota.innerHTML = '<i class="fas fa-save me-2"></i> Update Data Anggota';
+                        btnBatalEditAnggota.classList.remove("d-none");
+
+                        window.scrollTo({ top: formAnggota.offsetTop - 80, behavior: "smooth" });
+                    }
+                });
+            });
+
+            // Listener Tombol Hapus Anggota
+            document.querySelectorAll(".btn-hapus-anggota").forEach(btn => {
+                btn.addEventListener("click", async function() {
+                    if (confirm("Apakah Bos yakin ingin menghapus data anggota ini secara permanen?")) {
+                        const idHapus = this.getAttribute("data-id");
+                        try {
+                            await deleteDoc(doc(db, "anggota", idHapus));
+                            notifikasi.innerHTML = '<i class="fas fa-check-circle me-2"></i> <strong>Berhasil!</strong> Data Anggota telah dihapus.';
+                            notifikasi.classList.remove("d-none");
+                            setTimeout(() => { notifikasi.classList.add("d-none"); }, 4000);
+                            muatDaftarAnggota();
+                        } catch (e) {
+                            console.error("Gagal hapus anggota:", e);
+                            alert("Gagal menghapus data anggota.");
+                        }
+                    }
+                });
+            });
+        }
+
+        // Pencarian realtime anggota
+        if (inputCariAnggotaAdmin) {
+            inputCariAnggotaAdmin.addEventListener("input", function() {
+                const keyword = this.value.toLowerCase().trim();
+                if (!keyword) {
+                    tampilkanTabelAnggota(cacheSemuaAnggota);
+                    return;
+                }
+                const hasilFilter = cacheSemuaAnggota.filter(item => {
+                    return (item.nama && item.nama.toLowerCase().includes(keyword)) ||
+                           (item.npa && item.npa.toLowerCase().includes(keyword)) ||
+                           (item.sekolah && item.sekolah.toLowerCase().includes(keyword)) ||
+                           (item.ranting && item.ranting.toLowerCase().includes(keyword));
+                });
+                tampilkanTabelAnggota(hasilFilter);
+            });
+        }
+
+        btnRefreshAnggota.addEventListener("click", muatDaftarAnggota);
 
         // 6. LOGIKA UPLOAD EXCEL MASSAL (MESIN PENYEDOT DATA)
         const formExcel = document.getElementById("formExcel");
@@ -700,6 +896,7 @@
 
                     statusUpload.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> Mantap Bos! ${jumlahBerhasil} data anggota sukses di-upload!</span>`;
                     formExcel.reset();
+                    muatDaftarAnggota(); // Refresh tabel anggota otomatis
 
                 } catch (error) {
                     console.error("Error Upload Excel: ", error);
@@ -810,6 +1007,7 @@
         // Jalankan saat admin dibuka
         document.addEventListener("DOMContentLoaded", () => {
             muatDaftarBerita();
+            muatDaftarAnggota();
             muatRekapPendataan();
         });
 
