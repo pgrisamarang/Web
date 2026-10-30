@@ -176,6 +176,184 @@
         </div>
     </div>
 
+    <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengurus Ranting - PGRI Cabang Kec. Samarang</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#004a99">
+    <link rel="icon" type="image/png" href="logo_pgri.png">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --pgri-blue: #004a99;
+            --pgri-accent: #ffc107;
+            --light-bg: #f8f9fa;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); }
+        .navbar { background-color: var(--pgri-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--pgri-accent) !important; }
+        .dropdown-menu { border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .dropdown-item:hover { background-color: #f1f3f5; color: var(--pgri-blue); font-weight: 500; }
+        
+        .box-filter { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
+            margin-top: -40px; 
+            position: relative; 
+            z-index: 10;
+        }
+        
+        /* KARTU HORIZONTAL (Foto di Kiri, Teks di Kanan) */
+        .ranting-card-horizontal { 
+            border: none; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+            background: white; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            height: 100%; 
+            display: flex; 
+            align-items: center; 
+            border-left: 5px solid var(--pgri-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ranting-card-horizontal:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .ranting-img-horizontal { 
+            width: 75px; 
+            height: 75px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 3px solid #e9ecef; 
+            flex-shrink: 0; 
+            margin-right: 15px; 
+            background-color: #f8f9fa;
+        }
+        .ranting-info { overflow: hidden; flex-grow: 1; }
+        .ranting-jabatan-h { 
+            font-size: 0.75rem; 
+            font-weight: bold; 
+            color: var(--pgri-blue); 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            margin-bottom: 2px;
+        }
+        .ranting-nama-h { 
+            font-size: 0.98rem; 
+            font-weight: bold; 
+            margin-bottom: 2px; 
+            color: #212529; 
+            line-height: 1.2;
+        }
+        .ranting-npa-h { 
+            font-size: 0.8rem; 
+            color: #6c757d; 
+            margin-bottom: 0; 
+            font-family: monospace;
+        }
+        .ranting-unit-h {
+            font-size: 0.75rem;
+            color: #495057;
+            margin-bottom: 2px;
+        }
+        
+        footer { background-color: #212529; color: #adb5bd; padding: 50px 0 20px; margin-top: 50px;}
+        footer a { color: #adb5bd; text-decoration: none; }
+        footer a:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI UTAMA -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <img src="logo_pgri.png" alt="Logo PGRI" style="height: 45px; margin-right: 10px;">
+                PGRI SAMARANG
+            </a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">Profil</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
+                            <li><a class="dropdown-item" href="pengurus-cabang.html">Pengurus Cabang</a></li>
+                            <li><a class="dropdown-item active" href="pengurus-ranting.html">Pengurus Ranting</a></li>
+                            <li><a class="dropdown-item fw-bold text-primary" href="ikrar-sumpah.html"><i class="fas fa-certificate me-1 text-warning"></i> Ikrar & Sumpah Guru</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="berita.html">Berita & Karya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="unduhan.html">Unduhan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER HALAMAN -->
+    <div class="bg-primary text-white py-5" style="background: linear-gradient(135deg, #004a99 0%, #007bff 100%);">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold"><i class="fas fa-users-cog me-2"></i> Pengurus Ranting</h1>
+            <p class="lead mb-0">Struktur Organisasi dan Keanggotaan Ranting se-Kecamatan Samarang</p>
+        </div>
+    </div>
+
+    <!-- AREA FILTER RANTING -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="box-filter">
+                    <label class="form-label fw-bold text-primary mb-2"><i class="fas fa-filter me-1"></i> Pilih Ranting PGRI:</label>
+                    <select id="selectRanting" class="form-select form-select-lg border-primary">
+                        <option value="">-- Sedang Memuat Daftar Ranting... --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WADAH STRUKTUR PENGURUS RANTING -->
+    <div class="container py-5 mt-3">
+        <div id="wadahHasil" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap border-bottom pb-3">
+                <div>
+                    <h3 class="fw-bold text-primary mb-0" id="judulRantingTerpilih">Struktur Pengurus Ranting</h3>
+                    <small class="text-muted" id="subTotalAnggota">Total Anggota: 0 Orang</small>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm mt-2 mt-md-0" onclick="window.print()"><i class="fas fa-print me-1"></i> Cetak Struktur</button>
+            </div>
+
+            <!-- Tempat Hasil Struktur disuntikkan -->
+            <div id="wadahPengurusInti"></div>
+        </div>
+
+        <div id="wadahLoading" class="text-center py-5">
+            <i class="fas fa-spinner fa-spin fa-3x text-primary mb-3"></i>
+            <h5 class="text-muted">Menghubungkan ke database server...</h5>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="pt-5">
         <div class="container">
@@ -217,6 +395,221 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FIREBASE SCRIPT LOGIKA FILTER SPESIFIK RANTING -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBy2KzlKK1L4KmOGNiBpy-tZcJAc9ETApM",
+            authDomain: "pgri-samarang.firebaseapp.com",
+            projectId: "pgri-samarang",
+            storageBucket: "pgri-samarang.firebasestorage.app",
+            messagingSenderId: "879465219309",
+            appId: "1:879465219309:web:f10c0717a4e2e87a7f38e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const selectRanting = document.getElementById("selectRanting");
+        const wadahHasil = document.getElementById("wadahHasil");
+        const wadahLoading = document.getElementById("wadahLoading");
+        const wadahPengurusInti = document.getElementById("wadahPengurusInti");
+        const judulRantingTerpilih = document.getElementById("judulRantingTerpilih");
+        const subTotalAnggota = document.getElementById("subTotalAnggota");
+
+        let semuaDataAnggota = [];
+
+        // 1. SEDOT SEMUA DATA SANG ANGGOTA DARI FIREBASE
+        async function muatDataAwal() {
+            try {
+                const snapshot = await getDocs(collection(db, "anggota"));
+                semuaDataAnggota = [];
+                let setRanting = new Set();
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    if (data.ranting && data.ranting.trim() !== "" && data.ranting !== "-") {
+                        semuaDataAnggota.push(data);
+                        setRanting.add(data.ranting.trim());
+                    }
+                });
+
+                // Isi Pilihan Dropdown Ranting
+                selectRanting.innerHTML = '<option value="">-- Pilih Ranting PGRI --</option>';
+                const daftarRantingUrut = Array.from(setRanting).sort();
+
+                daftarRantingUrut.forEach(r => {
+                    selectRanting.innerHTML += `<option value="${r}">${r}</option>`;
+                });
+
+                wadahLoading.style.display = "none";
+
+                // Cek apakah ada parameter dari URL (Contoh: pengurus-ranting.html?ranting=Parakan)
+                const urlParams = new URLSearchParams(window.location.search);
+                const rantingDariUrl = urlParams.get('ranting');
+
+                if (rantingDariUrl) {
+                    selectRanting.value = rantingDariUrl;
+                    tampilkanStrukturRanting(rantingDariUrl);
+                } else if (daftarRantingUrut.length > 0) {
+                    // Default pilih Ranting pertama
+                    selectRanting.value = daftarRantingUrut[0];
+                    tampilkanStrukturRanting(daftarRantingUrut[0]);
+                }
+
+            } catch (error) {
+                console.error("Gagal muat data pengurus ranting:", error);
+                wadahLoading.innerHTML = '<div class="alert alert-danger">Gagal memuat data dari server. Periksa koneksi internet.</div>';
+            }
+        }
+
+        // 2. LOGIKA KARTU HORIZONTAL
+        const buatKartuHorizontal = (data, labelJabatan, warnaGaris) => {
+            if (!data) {
+                return `
+                    <div class="col-md-4 mb-3">
+                        <div class="ranting-card-horizontal" style="border-left-color: #ced4da;">
+                            <img src="https://placehold.co/150x150/eeeeee/a3a8ad?text=-" class="ranting-img-horizontal" alt="Kosong">
+                            <div class="ranting-info">
+                                <div class="ranting-jabatan-h text-secondary">${labelJabatan}</div>
+                                <p class="ranting-nama-h text-muted opacity-75">Belum Ditentukan</p>
+                                <p class="ranting-npa-h">-</p>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+            
+            let foto = (data.foto && data.foto.trim() !== "") ? data.foto : "https://placehold.co/150x150/e9ecef/a3a8ad?text=Foto";
+            let npaAsli = data.npa ? String(data.npa) : "-";
+            let npaSensor = (npaAsli.length > 4 && npaAsli !== "-") ? npaAsli.substring(0, npaAsli.length - 4) + "****" : npaAsli;
+            let sekolahInfo = data.sekolah ? data.sekolah : "-";
+
+            return `
+                <div class="col-md-4 mb-3">
+                    <div class="ranting-card-horizontal" style="border-left-color: ${warnaGaris};">
+                        <img src="${foto}" class="ranting-img-horizontal" alt="Foto ${data.nama}">
+                        <div class="ranting-info">
+                            <div class="ranting-jabatan-h" style="color: ${warnaGaris};">${labelJabatan}</div>
+                            <p class="ranting-nama-h">${data.nama}</p>
+                            <p class="ranting-unit-h"><i class="fas fa-school me-1 text-muted"></i>${sekolahInfo}</p>
+                            <p class="ranting-npa-h">NPA: ${npaSensor}</p>
+                        </div>
+                    </div>
+                </div>`;
+        };
+
+        // 3. FUNGSI PENJARING SPESIFIK (JURUS UTAMA PENCEGAH BENTROKAN CABANG vs RANTING)
+        function cariJabatanSpesifik(kandidat, roleKey) {
+            const matches = kandidat.filter(item => {
+                const jab = (item.jabatan || "").toLowerCase().trim();
+                
+                // PERBAIKAN SAKTI: Mencegah nama sekolah ber-angka (misal: SMPN 1) dikira jabatan Cabang.
+                // Sekarang hanya memblokir yang benar-benar tertulis berdempetan seperti "Wakil Ketua 1", "Ketua 2", "Sekretaris I", dst.
+                const isJabatanCabang = jab.includes("cabang") || 
+                                        jab.includes("bidang") || 
+                                        /(wakil\s*ketua|waka|ketua|sekretaris)\s*(1|2|3|i|ii|iii)\b/.test(jab);
+
+                if (roleKey === "ketua") {
+                    return jab.includes("ketua") && !jab.includes("wakil") && !isJabatanCabang;
+                }
+                if (roleKey === "wakil_ketua") {
+                    return jab.includes("wakil") && (jab.includes("ketua") || jab.includes("wakil ketua")) && !jab.includes("sekretaris") && !isJabatanCabang;
+                }
+                if (roleKey === "sekretaris") {
+                    return jab.includes("sekretaris") && !jab.includes("wakil") && !isJabatanCabang;
+                }
+                if (roleKey === "wakil_sekretaris") {
+                    return (jab.includes("wakil sekretaris") || jab.includes("wasek")) && !isJabatanCabang;
+                }
+                if (roleKey === "bendahara") {
+                    return jab.includes("bendahara") && !jab.includes("wakil") && !isJabatanCabang;
+                }
+                return false;
+            });
+
+            if (matches.length === 0) return null;
+
+            // PRIORITAS SAKTI: Jika ada kandidat yang jabatannya ada kata "ranting" (seperti "Wakil Ketua Ranting Parakan"), pilih itu!
+            const terdaftarRanting = matches.find(m => (m.jabatan || "").toLowerCase().includes("ranting"));
+            if (terdaftarRanting) return terdaftarRanting;
+
+            return matches[0];
+        }
+
+        // 4. TAMPILKAN STRUKTUR PENGURUS RANTING TERPILIH
+        function tampilkanStrukturRanting(namaRanting) {
+            if (!namaRanting) {
+                wadahHasil.style.display = "none";
+                return;
+            }
+
+            // A. Filter anggota spesifik Ranting ini saja
+            const anggotaTarget = semuaDataAnggota.filter(a => a.ranting.trim().toLowerCase() === namaRanting.trim().toLowerCase());
+
+            judulRantingTerpilih.innerText = `Struktur Pengurus ${namaRanting}`;
+            subTotalAnggota.innerText = `Total Terdaftar: ${anggotaTarget.length} Anggota`;
+
+            // B. Cari Pengurus Harian
+            const ketua = cariJabatanSpesifik(anggotaTarget, "ketua");
+            const wakilKetua = cariJabatanSpesifik(anggotaTarget, "wakil_ketua");
+            const sekretaris = cariJabatanSpesifik(anggotaTarget, "sekretaris");
+            const wakilSekretaris = cariJabatanSpesifik(anggotaTarget, "wakil_sekretaris");
+            const bendahara = cariJabatanSpesifik(anggotaTarget, "bendahara");
+
+            // Kumpulkan ID / Nama Pengurus Harian agar tidak ganda di daftar anggota biasa
+            const idPengurusHarian = new Set([
+                ketua ? ketua.nama : null,
+                wakilKetua ? wakilKetua.nama : null,
+                sekretaris ? sekretaris.nama : null,
+                wakilSekretaris ? wakilSekretaris.nama : null,
+                bendahara ? bendahara.nama : null
+            ]);
+
+            // C. Anggota Lainnya
+            const sisaAnggota = anggotaTarget.filter(a => !idPengurusHarian.has(a.nama));
+
+            // D. Susun HTML
+            let htmlStruktur = `
+                <h5 class="fw-bold mb-3 text-secondary border-start border-4 border-primary ps-2">A. Pengurus Harian Ranting</h5>
+                <div class="row">
+                    ${buatKartuHorizontal(ketua, "Ketua Ranting", "#004a99")}
+                    ${buatKartuHorizontal(wakilKetua, "Wakil Ketua Ranting", "#007bff")}
+                    ${buatKartuHorizontal(sekretaris, "Sekretaris Ranting", "#198754")}
+                </div>
+                <div class="row">
+                    ${buatKartuHorizontal(wakilSekretaris, "Wakil Sekretaris", "#20c997")}
+                    ${buatKartuHorizontal(bendahara, "Bendahara Ranting", "#dc3545")}
+                </div>
+            `;
+
+            if (sisaAnggota.length > 0) {
+                htmlStruktur += `<h5 class="fw-bold mb-3 mt-4 text-secondary border-start border-4 border-warning ps-2">B. Anggota / Pengurus Ranting Lainnya</h5><div class="row">`;
+                sisaAnggota.forEach(ang => {
+                    let labelPosisi = ang.jabatan && ang.jabatan.trim() !== "" ? ang.jabatan : "Anggota Ranting";
+                    htmlStruktur += buatKartuHorizontal(ang, labelPosisi, "#6c757d");
+                });
+                htmlStruktur += `</div>`;
+            }
+
+            wadahPengurusInti.innerHTML = htmlStruktur;
+            wadahHasil.style.display = "block";
+        }
+
+        // Listener jika dropdown diganti
+        selectRanting.addEventListener("change", function() {
+            tampilkanStrukturRanting(this.value);
+        });
+
+        // Jalankan saat halaman dibuka
+        document.addEventListener("DOMContentLoaded", muatDataAwal);
+    </script>
+</body>
+</html>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
