@@ -26,10 +26,19 @@
         }
         
         /* Tambahan CSS untuk Editor Teks (Quill) */
-        .ql-container {
+        .ql-toolbar.ql-snow {
+            background-color: #f8f9fa;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-color: #ced4da;
+        }
+        .ql-container.ql-snow {
             font-size: 1.1rem;
-            min-height: 250px;
+            min-height: 320px;
             background-color: white;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            border-color: #ced4da;
         }
     </style>
     
@@ -263,6 +272,37 @@
                 </div>
                 <!-- ================= END REKAP PENDATAAN ================= -->
 
+                <!-- ================= FITUR BARU: REKAP PENGADUAN LKBH ================= -->
+                <div class="card card-form p-4 mt-4 mb-5 border-top border-danger border-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3 flex-wrap">
+                        <h5 class="fw-bold mb-2 mb-md-0"><i class="fas fa-shield-alt text-danger me-2"></i> Rekap Pengaduan LKBH & Aspirasi Rahasia</h5>
+                        <button id="btnRefreshPengaduan" class="btn btn-outline-secondary btn-sm"><i class="fas fa-sync-alt me-1"></i> Refresh Aduan</button>
+                    </div>
+                    
+                    <p class="text-muted small mb-3">Daftar pengaduan hukum dari guru yang masuk secara rahasia melalui menu Aspirasi & LKBH (`aspirasi.html`):</p>
+                    
+                    <div class="table-responsive bg-white rounded shadow-sm border" style="max-height: 350px;">
+                        <table class="table table-sm table-striped table-hover mb-0 align-middle">
+                            <thead class="table-dark text-center sticky-top">
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="20%">Nama Pelapor</th>
+                                    <th width="15%">NPA</th>
+                                    <th width="40%">Ringkasan Masalah</th>
+                                    <th width="10%">Status</th>
+                                    <th width="10%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelRekapPengaduan">
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i> Memuat aduan LKBH...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- ================= END REKAP PENGADUAN LKBH ================= -->
+
                 <!-- FORM UPLOAD EXCEL MASSAL (FITUR BARU) -->
                 <div class="card card-form p-4 mt-4 mb-5 border-top border-warning border-4">
                     <h5 class="fw-bold mb-3 border-bottom pb-3"><i class="fas fa-file-excel text-success me-2"></i> Upload Anggota Massal (Excel)</h5>
@@ -334,18 +374,26 @@
             });
         });
 
-        // INISIALISASI EDITOR TEKS KAYA (RICH TEXT)
+        // INISIALISASI EDITOR TEKS KAYA (RICH TEXT SUPER LENGKAP)
+        const toolbarOptions = [
+            [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }], // Pilihan Jenis & Ukuran Huruf
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],                       // Style Judul / Sub-judul / Normal
+            ['bold', 'italic', 'underline', 'strike'],                       // Cetak Tebal, Miring, Garis Bawah, Coret
+            [{ 'color': [] }, { 'background': [] }],                         // Warna Teks & Warna Stabilo / Highlight
+            [{ 'script': 'sub'}, { 'script': 'super' }],                     // Subscript / Superscript (Angka Bawah/Atas)
+            [{ 'align': [] }],                                               // Rata Kiri, Tengah, Kanan, Rata Kanan-Kiri (Justify)
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],                    // Penomoran & Bullet List
+            [{ 'indent': '-1'}, { 'indent': '+1' }],                          // Geser Kiri / Kanan (Indentasi)
+            ['blockquote', 'code-block'],                                    // Kutipan & Blok Kode
+            ['link', 'image', 'video'],                                      // Sisipkan Link, Gambar, Video
+            ['clean']                                                        // Hapus Format / Reset Teks
+        ];
+
         const quill = new Quill('#editorIsiBerita', {
             theme: 'snow',
-            placeholder: 'Ketik isi berita dengan gaya (Bold, Miring, Link, Gambar)...',
+            placeholder: 'Tulis atau tempel postingan artikel Anda di sini dengan bebas...',
             modules: {
-                toolbar: [
-                    [{ 'header': [1, 2, 3, false] }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    ['link', 'image', 'video'],
-                    ['clean'] // Tombol untuk menghapus format
-                ]
+                toolbar: toolbarOptions
             }
         });
 
@@ -1004,11 +1052,67 @@
 
         btnRefreshPendataan.addEventListener("click", muatRekapPendataan);
 
+        // 9. ================= LOGIKA REKAP PENGADUAN LKBH =================
+        const tabelRekapPengaduan = document.getElementById("tabelRekapPengaduan");
+        const btnRefreshPengaduan = document.getElementById("btnRefreshPengaduan");
+
+        async function muatRekapPengaduan() {
+            if (!tabelRekapPengaduan) return;
+            tabelRekapPengaduan.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted"><i class="fas fa-spinner fa-spin me-2"></i> Memuat aduan LKBH...</td></tr>';
+            try {
+                const snapshot = await getDocs(collection(db, "pengaduan"));
+                let nomor = 1;
+                tabelRekapPengaduan.innerHTML = "";
+
+                if (snapshot.empty) {
+                    tabelRekapPengaduan.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">Belum ada pengaduan LKBH yang masuk.</td></tr>';
+                    return;
+                }
+
+                snapshot.forEach(docSnap => {
+                    const data = docSnap.data();
+                    const statusBadge = data.status === "Selesai" 
+                        ? '<span class="badge bg-success">Selesai</span>' 
+                        : '<span class="badge bg-warning text-dark">Belum Diproses</span>';
+
+                    tabelRekapPengaduan.innerHTML += `
+                        <tr>
+                            <td class="text-center fw-bold">${nomor++}</td>
+                            <td class="fw-bold">${data.nama || "-"}</td>
+                            <td class="font-monospace">${data.npa || "-"}</td>
+                            <td><small>${data.masalah || "-"}</small></td>
+                            <td class="text-center">${statusBadge}</td>
+                            <td class="text-center">
+                                <button class="btn btn-danger btn-sm py-0 px-2 btn-hapus-pengaduan" data-id="${docSnap.id}" title="Hapus Aduan"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                document.querySelectorAll(".btn-hapus-pengaduan").forEach(btn => {
+                    btn.addEventListener("click", async function() {
+                        if (confirm("Apakah Bos yakin ingin menghapus data pengaduan ini?")) {
+                            const idHapus = this.getAttribute("data-id");
+                            await deleteDoc(doc(db, "pengaduan", idHapus));
+                            muatRekapPengaduan();
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error("Gagal muat aduan LKBH:", error);
+                tabelRekapPengaduan.innerHTML = '<tr><td colspan="6" class="text-center text-danger py-4">Gagal memuat aduan LKBH. Cek koneksi.</td></tr>';
+            }
+        }
+
+        if (btnRefreshPengaduan) btnRefreshPengaduan.addEventListener("click", muatRekapPengaduan);
+
         // Jalankan saat admin dibuka
         document.addEventListener("DOMContentLoaded", () => {
             muatDaftarBerita();
             muatDaftarAnggota();
             muatRekapPendataan();
+            muatRekapPengaduan();
         });
 
     </script>
