@@ -3,665 +3,779 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PGRI Cabang Samarang</title>
-	<!-- ========================================== -->
-    <!-- KTP WEBSITE (SEO) AGAR DILIRIK ROBOT GOOGLE -->
-    <!-- ========================================== -->
-	<meta name="google-site-verification" content="zRSzKF4DUXt8SWL-1mL551yKPQOAt9dgYbytbefl6UM" />
-    <meta name="description" content="Situs Resmi Persatuan Guru Republik Indonesia (PGRI) Cabang Kecamatan Samarang. Portal informasi, cek NPA, layanan keanggotaan, berita pendidikan, dan wadah aspirasi guru di Samarang.">
-    <meta name="keywords" content="PGRI Samarang, PGRI Cabang Kecamatan Samarang, PGRI Kec Samarang, Guru Samarang, Persatuan Guru Republik Indonesia Samarang, Pendidikan Samarang, Cek NPA PGRI Samarang, Berita Guru Samarang">
-    <meta name="author" content="Pengurus PGRI Cabang Samarang">
-    <meta name="robots" content="index, follow">
-
-    <meta itemprop="name" content="PGRI Cabang Kecamatan Samarang">
-    <meta itemprop="description" content="Situs Resmi PGRI Cabang Kecamatan Samarang. Wadah informasi, karya, dan perlindungan profesi guru.">
-    <meta itemprop="image" content="https://pgrisamarang.github.io/Web/ketuapgri.jpg">
-    <link rel="image_src" href="https://pgrisamarang.github.io/Web/ketuapgri.jpg">
-
-	<!-- ========================================== -->
-    <!-- KODE AJAIB PWA (APP ANDROID) -->
-    <!-- ========================================== -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#004a99">
-    <link rel="apple-touch-icon" href="logo-pgri.png">
-    <!-- Favicon / Ikon Tab -->
-    <link rel="icon" type="image/png" href="ketua_pgri2.png">
+    <title>Smart Teacher Competition (STC) CBT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- PWA Manifest & Meta Tags -->
+    <meta name="theme-color" content="#10b981">
+    <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_PGRI.svg/192px-Logo_PGRI.svg.png">
     
-   <!-- OpenGraph Metadata untuk WhatsApp & Media Sosial -->
-    <meta property="og:title" content="PGRI Cabang Kecamatan Samarang">
-    <meta property="og:description" content="Situs Resmi PGRI Cabang Kecamatan Samarang. Wadah informasi, karya, dan perlindungan profesi guru.">
-    <meta property="og:image" content="https://pgrisamarang.github.io/Web/ketua_openg.jpg">
-    <meta property="og:url" content="https://pgrisamarang.github.io/Web/">
-    <meta property="og:type" content="website">
-    
-    <!-- INI DIA KODE UNTUK MENGGANTI BOLA DUNIA JADI LOGO PGRI -->
-    <link rel="icon" type="image/png" href="logo_pgri.png">
-	
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        :root {
-            --pgri-blue: #004a99;
-            --pgri-accent: #ffc107;
-            --light-bg: #f8f9fa;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
-            scroll-behavior: smooth;
-        }
-        /* Navbar */
-        .navbar {
-            background-color: var(--pgri-blue);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff !important;
-        }
-        .nav-link:hover {
-            color: var(--pgri-accent) !important;
-        }
-        .dropdown-menu {
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .dropdown-item:hover {
-            background-color: #f1f3f5;
-            color: var(--pgri-blue);
-            font-weight: 500;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #004a99 0%, #007bff 100%);
-            color: white;
-            padding: 80px 0;
-        }
-        .hero-img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            background-color: white;
-            padding: 10px;
-        }
-        
-        /* Stats & Cek NPA (Overlapping) */
-        .overlap-box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-        }
-        .stats-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--pgri-blue);
-        }
-        
-        /* Section Titles */
-        .section-title {
-            color: var(--pgri-blue);
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--pgri-accent);
-        }
-        .text-center .section-title::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Cards */
-        .card-custom {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        .card-custom:hover {
-            transform: translateY(-5px);
-        }
-
-        /* =========================================
-           TAMBAHAN CSS UNTUK FOTO SAMBUTAN
-           ========================================= */
-        .img-sambutan {
-            float: left; /* Trik agar teks bisa mengelilingi foto */
-            width: 220px;
-            margin-right: 25px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        /* Penyesuaian ukuran foto saat dibuka di HP */
-        @media (max-width: 768px) {
-            .img-sambutan { width: 140px; margin-right: 15px; }
-        }
-
-        /* Agenda / Kalender */
-        .agenda-date {
-            background-color: var(--pgri-blue);
-            color: white;
-            border-radius: 8px;
-            text-align: center;
-            padding: 10px;
-            min-width: 80px;
-        }
-        .agenda-date .day { font-size: 1.5rem; font-weight: bold; line-height: 1; }
-        .agenda-date .month { font-size: 0.8rem; text-transform: uppercase; }
-
-        /* Unduhan */
-        .download-item {
-            border-left: 4px solid var(--pgri-blue);
-            background: white;
-            transition: all 0.3s ease;
-        }
-        .download-item:hover {
-            border-left-color: var(--pgri-accent);
-            background: #f8f9fa;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #212529;
-            color: #adb5bd;
-            padding: 50px 0 20px;
-        }
-        footer a { color: #adb5bd; text-decoration: none; }
-        footer a:hover { color: white; }
-        .social-icons a { font-size: 1.5rem; margin-right: 15px; color: white; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
+        .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .custom-radio input:checked + div { background-color: #10b981; border-color: #10b981; color: white; }
+        .custom-radio input:checked + div .letter-box { background-color: white; color: #10b981; }
+        .animate-pulse-once { animation: pulse 0.5s ease-out 1; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
-</head>
-<body>
 
-    <!-- NAVIGASI -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <img src="logo_pgri.png" style="height: 45px; margin-right: 10px;">
-                PGRI CABANG KEC. SAMARANG
-            </a>
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown">
-                            Profil
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profil.html#sejarah">Sejarah Singkat</a></li>
-                            <li><a class="dropdown-item" href="pengurus-cabang.html">Pengurus Cabang</a></li>
-                            <li><a class="dropdown-item" href="pengurus-ranting.html">Pengurus Ranting</a></li>
-                            <li><a class="dropdown-item fw-bold text-primary" href="ikrar-sumpah.html"><i class="fas fa-certificate me-1 text-warning"></i> Ikrar & Sumpah Guru</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="profil.html#sekolah-anggota">Daftar Sekolah Anggota</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="nav-item"><a class="nav-link" href="keanggotaan.html">Keanggotaan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="berita.html">Berita & Karya</a></li>
-                    <li class="nav-item"><a class="nav-link" href="unduhan.html">Unduhan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="aspirasi.html">Aspirasi</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <span class="badge bg-warning text-dark mb-2">Situs Resmi</span>
-                    <h1 class="display-4 fw-bold">Solidaritas, Profesionalisme & Kesejahteraan.</h1>
-                    <p class="lead mt-3">Portal resmi Persatuan Guru Republik Indonesia (PGRI) Cabang Kec. Samarang. Wadah informasi, karya, dan perlindungan profesi guru.</p>
-                    <div class="mt-4">
-                        <a href="#cek-npa" class="btn btn-warning btn-lg me-2 fw-bold shadow">Cek NPA Anggota</a>
-                        <a href="#agenda" class="btn btn-outline-light btn-lg shadow">Lihat Agenda</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <img src="foto_ketua.jpg" alt="Ketua PGRI Samarang" class="hero-img img-fluid">
-                    <h5 class="mt-3 mb-0 fw-bold text-white">ARIEF FAUZI MANSUR, S.Pd.</h5>
-                    <p class="text-light">Ketua Cabang PGRI Kec. Samarang</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- PWA Dynamic Manifest Injection & Install Prompt Handler -->
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Tampilkan tombol instal jika ada elemen terkait
+            const installBtn = document.getElementById('pwa-install-btn');
+            if(installBtn) installBtn.classList.remove('hidden');
+        });
 
-    <!-- STATISTIK & CEK KEANGGOTAAN (FITUR 4) -->
-    <section id="cek-npa" class="container pb-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="overlap-box">
-                    <div class="row text-center mb-4 border-bottom pb-4">
-                        <div class="col-md-4 mb-3 mb-md-0 border-end">
-                            <div id="statAnggota" class="stats-number">...</div>
-                            <div class="text-muted fw-bold">Anggota Aktif</div>
-                            <small id="statGender" class="text-muted" style="font-size: 0.75rem;">(L: 0 | P: 0)</small>
-                        </div>
-                        <div class="col-md-4 mb-3 mb-md-0 border-end">
-                            <div id="statSekolah" class="stats-number">...</div>
-                            <div class="text-muted fw-bold">Sekolah Mitra</div>
-                        </div>
-                        <div class="col-md-4">
-                            <div id="statRanting" class="stats-number">...</div>
-                            <div class="text-muted fw-bold">Jumlah Ranting</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Kotak Cek NPA -->
-                    <div class="text-center px-lg-5">
-                        <h5 class="fw-bold mb-3"><i class="fas fa-id-card text-primary me-2"></i> Cek Status Keanggotaan</h5>
-                        <p class="text-muted small">Masukkan Nomor Pokok Anggota (NPA) Anda untuk memverifikasi data terdaftar di Cabang Samarang.</p>
-                        <form id="formCekNPA" class="d-flex justify-content-center mt-3">
-                            <input id="inputCariNPA" class="form-control form-control-lg me-2" type="search" placeholder="Masukkan NPA (Contoh: 123456789)" style="max-width: 400px;" required>
-                            <button id="btnCariNPA" class="btn btn-primary btn-lg px-4" type="submit">Cari Data</button>
-                        </form>
-                        
-                        <!-- Tempat Munculnya Hasil Pencarian -->
-                        <div id="hasilCekNPA" class="mt-4 text-start d-none">
-                            <!-- Hasil akan disuntikkan ke sini oleh sistem -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SAMBUTAN KETUA -->
-    <section id="sambutan" class="container py-4 mb-3">
-        <h2 class="section-title mb-4">Sambutan Ketua</h2>
-        <div class="card card-custom p-4 p-md-5 border-top border-primary border-4" style="background-color: #ffffff;">
-            <!-- INI YANG DITAMBAHKAN BOS: text-align: justify; -->
-            <div class="clearfix" style="font-size: 1.1rem; line-height: 1.8; color: #444; text-align: justify;">
-                
-                <!-- FOTO KETUA (Silakan ganti src dengan link foto ketua yang asli) -->
-                <img src="ketua.jpg" alt="Foto Ketua PGRI" class="img-sambutan">
-                
-                <p class="fw-bold text-dark mb-3">Assalamu'alaikum Wr. Wb.<br>Salam Solidaritas!</p>
-                
-                <p>Website ini bukan sekadar media publikasi, melainkan jendela informasi, jembatan komunikasi, dan ruang kolaborasi bagi seluruh anggota PGRI. Melalui platform ini, kami berharap informasi organisasi, program kerja, kegiatan, serta berbagai gagasan dan inovasi pendidikan dapat diakses secara luas, sehingga terbangun komunikasi yang efektif dan hubungan yang semakin kuat antara pengurus, anggota, dan masyarakat.</p>
-                
-                <p>Sejalan dengan transformasi digital, pengembangan sumber daya manusia menjadi kunci utama kemajuan organisasi. PGRI berkomitmen mendorong peningkatan kompetensi, profesionalisme, literasi digital, dan kapasitas guru serta tenaga kependidikan agar mampu beradaptasi dengan perubahan zaman dan berkontribusi nyata dalam meningkatkan mutu pendidikan.</p>
-                
-                <p>Kami mengajak seluruh pengurus dan anggota untuk menjadikan website ini sebagai sarana berbagi informasi, menyampaikan aspirasi, memperluas wawasan, dan memperkuat sinergi. Dengan semangat kebersamaan, keterbukaan, dan inovasi, kita wujudkan PGRI yang semakin modern, profesional, berintegritas, dan mampu menjawab tantangan masa depan tanpa meninggalkan nilai-nilai perjuangan organisasi.</p>
-                
-                <p>Akhir kata, semoga website ini menjadi langkah nyata dalam memperkuat eksistensi PGRI di era digital serta mendukung terwujudnya guru yang bermartabat dan pendidikan Indonesia yang berkualitas. Mari terus bersinergi dan berinovasi demi kemajuan PGRI dan masa depan pendidikan bangsa.</p>
-                
-                <p>Semoga dapat memberikan manfaat bagi semua.</p>
-                
-                <div class="mt-4 text-end">
-                    <img src="ttd_ketua.png" alt="Tanda Tangan" style="width: 250px; opacity: 0.7;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- KEGIATAN, KARYA, & AGENDA (FITUR 2 & 5) -->
-    <section id="kegiatan" class="py-5" style="background-color: #e9ecef;">
-        <div class="container">
-            <div class="row">
-                <!-- Portal Berita & Pojok Karya -->
-                <div class="col-lg-8 mb-4">
-                    <div class="d-flex justify-content-between align-items-end mb-4">
-                        <h2 class="section-title mb-0">Berita & Pojok Karya</h2>
-                    </div>
-                    
-                    <!-- Wadah Berita Dinamis dari Firebase -->
-                    <div class="row" id="wadahBerita">
-                        <div class="col-12 text-center text-muted py-5">
-                            <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
-                            <p>Sedang memuat berita terbaru...</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Papan Agenda (FITUR 2) -->
-                <div class="col-lg-4" id="agenda">
-                    <h2 class="section-title mb-4">Agenda Mendatang</h2>
-                    <div class="card card-custom p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="agenda-date me-3 bg-secondary">
-                                <div class="day">28</div>
-                                <div class="month">Nov</div>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Jalan Sehat Guru</h6>
-                                <p class="text-muted small mb-0"><i class="fas fa-map-marker-alt me-1"></i> Halaman PGRI Cabang Samarang</p>
-                            </div>
-                        </div>
-                    </div>
-					<div class="card card-custom p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="agenda-date me-3">
-                                <div class="day">17-24</div>
-                                <div class="month">Okt-Nov</div>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Bulu Tangkis Perorangan</h6>
-                                <p class="text-muted small mb-0"><i class="fas fa-map-marker-alt me-1"></i> GOR PGRI Samarang</p>
-                            </div>
-                        </div>
-                    </div>
-					<div class="card card-custom p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="agenda-date me-3">
-                                <div class="day">17-18</div>
-                                <div class="month">Nov</div>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Bola Voli Antar Ranting</h6>
-                                <p class="text-muted small mb-0"><i class="fas fa-map-marker-alt me-1"></i> GOR PGRI Samarang</p>
-                            </div>
-                        </div>
-                    </div>
-					<div class="card card-custom p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="agenda-date me-3">
-                                <div class="day">18</div>
-                                <div class="month">Nov</div>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Lomba Karaoke Guru</h6>
-                                <p class="text-muted small mb-0"><i class="fas fa-map-marker-alt me-1"></i> Gedung PGRI Samarang</p>
-                            </div>
-                        </div>
-                    </div>
-					<div class="card card-custom p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="agenda-date me-3">
-                                <div class="day">24</div>
-                                <div class="month">Nov</div>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-1">Lomba Sambung Lirik Guru</h6>
-                                <p class="text-muted small mb-0"><i class="fas fa-map-marker-alt me-1"></i> Gedung PGRI Samarang</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="agenda.html" class="btn btn-light w-100 fw-bold border">Lihat Semua Agenda</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="pt-5">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-lg-4 mb-4">
-                    <h5 class="text-white fw-bold mb-3"> <img src="logo_pgri.png" style="height: 28px; margin-right: 5px;"> PGRI CABANG KEC. SAMARANG</h5>
-                    <p>Organisasi profesi yang mewadahi para guru dan tenaga kependidikan di wilayah Kecamatan Samarang, berdedikasi untuk kemajuan pendidikan Indonesia.</p>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <h5 class="text-white fw-bold mb-3">Kontak & Sekretariat</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Gedung PGRI Pangwalungan Kp. Cicau Ds. Sukarasa Kec. Samarang Kab. Garut (44161)</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> pgrisamarang@gmail.com</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +62853-2034-7987</li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <h5 class="text-white fw-bold mb-3">Ikuti Kami</h5>
-                    <p>Dapatkan update terbaru melalui media sosial resmi kami.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="border-secondary">
-            <div class="row pb-3 align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <small>&copy; 2024 PGRI Cabang Samarang. All Rights Reserved.</small>
-                </div>
-                <!-- INI TAMBAHAN TOMBOL MASUK ADMIN YANG RAPI & TERSEMBUNYI DI FOOTER -->
-                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                    <a href="login.html" class="text-light small text-decoration-none opacity-50" title="Khusus Pengurus / Admin" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
-                        <i class="fas fa-lock me-1"></i> Login Pengurus (Admin)
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script Firebase untuk Menarik Data Berita -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        // Kunci Firebase Bos Uus
-        const firebaseConfig = {
-            apiKey: "AIzaSyBy2KzlKK1L4KmOGNiBpy-tZcJAc9ETApM",
-            authDomain: "pgri-samarang.firebaseapp.com",
-            projectId: "pgri-samarang",
-            storageBucket: "pgri-samarang.firebasestorage.app",
-            messagingSenderId: "879465219309",
-            appId: "1:879465219309:web:f10c0717a4e2e87a7f38e4"
+        // Buat data manifest langsung dalam bentuk blob agar valid dan tidak butuh file eksternal
+        const manifestData = {
+            "name": "Smart Teacher Competition CBT",
+            "short_name": "STC CBT",
+            "start_url": window.location.href,
+            "display": "standalone",
+            "background_color": "#0f172a",
+            "theme_color": "#10b981",
+            "icons": [
+                {
+                    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_PGRI.svg/192px-Logo_PGRI.svg.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_PGRI.svg/512px-Logo_PGRI.svg.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
         };
+        const stringManifest = JSON.stringify(manifestData);
+        const blob = new Blob([stringManifest], {type: 'application/json'});
+        const manifestURL = URL.createObjectURL(blob);
+        const linkTag = document.createElement('link');
+        linkTag.rel = 'manifest';
+        linkTag.href = manifestURL;
+        document.head.appendChild(linkTag);
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        async function muatBerita() {
-            const wadahBerita = document.getElementById("wadahBerita");
-            try {
-                // Tarik maksimal 4 berita terbaru, diurutkan dari yang paling baru
-                const q = query(collection(db, "postingan"), orderBy("tanggalDibuat", "desc"), limit(4));
-                const querySnapshot = await getDocs(q);
-                
-                wadahBerita.innerHTML = ""; // Bersihkan ikon loading
-                
-                if (querySnapshot.empty) {
-                    wadahBerita.innerHTML = '<div class="col-12"><div class="alert alert-info">Belum ada berita atau publikasi terbaru.</div></div>';
-                    return;
-                }
-
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    
-                    // Tentukan warna label sesuai kategori
-                    let badgeColor = "bg-primary";
-                    let icon = "fa-newspaper";
-                    if (data.kategori === "Pojok Karya") { 
-                        badgeColor = "bg-info text-dark"; 
-                        icon = "fa-pen-nib"; 
-                    } else if (data.kategori === "Pengumuman") { 
-                        badgeColor = "bg-warning text-dark"; 
-                        icon = "fa-bullhorn"; 
-                    }
-
-                    // INI YANG DIPERBAIKI: Hapus kode HTML tersembunyi sebelum dipotong
-                    let teksMentah = data.isi.replace(/<[^>]*>?/gm, '');
-                    const isiPendek = teksMentah.length > 100 ? teksMentah.substring(0, 100) + "..." : teksMentah;
-
-                    // Mengecek apakah postingan ini punya gambar atau tidak
-                    // Kalau tidak ada, pakai gambar default logo PGRI abu-abu
-                    const elemenGambar = data.gambar 
-                        ? `<img src="${data.gambar}" class="card-img-top" alt="Foto" style="height: 200px; object-fit: cover;">`
-                        : `<img src="https://placehold.co/600x400/eeeeee/004a99?text=PGRI+Samarang" class="card-img-top" alt="Default" style="height: 200px; object-fit: cover;">`;
-
-                    // Desain Kartu HTML
-                    const htmlCard = `
-                        <div class="col-md-6 mb-4">
-                            <div class="card card-custom h-100 shadow-sm border-0 overflow-hidden">
-                                ${elemenGambar}
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-2 mt-1">
-                                        <span class="badge ${badgeColor}"><i class="fas ${icon} me-1"></i> ${data.kategori}</span>
-                                    </div>
-                                    <h5 class="card-title fw-bold mt-1">${data.judul}</h5>
-                                    <p class="text-muted small mb-3"><i class="fas fa-user-edit me-1"></i> Oleh: <strong>${data.penulis}</strong></p>
-                                    <p class="card-text text-muted">${isiPendek}</p>
-                                    <a href="baca.html?id=${doc.id}" class="btn btn-sm btn-outline-primary mt-auto align-self-start">Baca Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    wadahBerita.innerHTML += htmlCard;
-                });
-            } catch (error) {
-                console.error("Waduh error narik data: ", error);
-                wadahBerita.innerHTML = '<div class="col-12"><div class="alert alert-danger">Gagal memuat berita. Periksa koneksi atau aturan keamanan Firebase.</div></div>';
-            }
-        }
-
-        // Jalankan fungsi otomatis saat web dibuka
-        document.addEventListener("DOMContentLoaded", function() {
-            muatBerita();
-            muatStatistik();
-        });
-
-        // ==========================================
-        // FITUR HITUNG STATISTIK OTOMATIS
-        // ==========================================
-        async function muatStatistik() {
-            try {
-                const querySnapshot = await getDocs(collection(db, "anggota"));
-                let totalAnggota = 0;
-                let cowok = 0;
-                let cewek = 0;
-                let listSekolah = new Set(); // Set agar tidak ada nama sekolah yang ganda
-                let listRanting = new Set(); // Set agar tidak ada nama ranting yang ganda
-
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    totalAnggota++;
-                    if(data.jk === "L" || data.jk === "l") cowok++;
-                    else cewek++;
-                    
-                    if(data.sekolah) listSekolah.add(data.sekolah.toLowerCase());
-                    if(data.ranting) listRanting.add(data.ranting.toLowerCase());
-                });
-
-                // Tampilkan ke layar
-                document.getElementById("statAnggota").innerText = totalAnggota;
-                document.getElementById("statGender").innerText = `(L: ${cowok} | P: ${cewek})`;
-                document.getElementById("statSekolah").innerText = listSekolah.size;
-                document.getElementById("statRanting").innerText = listRanting.size;
-            } catch (error) {
-                console.error("Gagal hitung statistik:", error);
-            }
-        }
-
-        // ==========================================
-        // FITUR CEK NPA
-        // ==========================================
-        const formCekNPA = document.getElementById("formCekNPA");
-        const btnCariNPA = document.getElementById("btnCariNPA");
-        const hasilCekNPA = document.getElementById("hasilCekNPA");
-
-        formCekNPA.addEventListener("submit", async function(e) {
-            e.preventDefault(); // Mencegah reload halaman
-            
-            const npaDicari = document.getElementById("inputCariNPA").value.trim();
-            
-            // Ubah tombol jadi loading
-            btnCariNPA.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            btnCariNPA.disabled = true;
-            
-            // Tampilkan kotak info
-            hasilCekNPA.classList.remove("d-none");
-            hasilCekNPA.innerHTML = '<div class="alert alert-info text-center"><i class="fas fa-search fa-spin me-2"></i> Sedang mencocokkan data di server...</div>';
-
-            try {
-                // Perintah cari data anggota di Firebase yang NPA-nya cocok
-                const q = query(collection(db, "anggota"), where("npa", "==", npaDicari));
-                const querySnapshot = await getDocs(q);
-
-                if (querySnapshot.empty) {
-                    // Kalau tidak ketemu
-                    hasilCekNPA.innerHTML = `
-                        <div class="alert alert-danger text-center shadow-sm">
-                            <i class="fas fa-times-circle fa-3x mb-3 text-danger"></i>
-                            <h5 class="fw-bold">Data Tidak Ditemukan!</h5>
-                            <p class="mb-0">NPA <b>${npaDicari}</b> tidak terdaftar di sistem PGRI Cabang Samarang.</p>
-                        </div>
-                    `;
-                } else {
-                    // Kalau Ketemu, tampilkan datanya dengan desain baru (Pakai Foto)
-                    querySnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        
-                        // Cek apakah punya foto, kalau kosong kasih gambar siluet
-                        let linkFoto = data.foto && data.foto.trim() !== "" ? data.foto : "https://placehold.co/300x400/e9ecef/a3a8ad?text=Siluet\\nFoto";
-
-                        hasilCekNPA.innerHTML = `
-                            <div class="alert alert-success shadow-sm border-success border-2 p-4">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3 text-center mb-3 mb-md-0">
-                                        <img src="${linkFoto}" class="img-fluid rounded shadow" style="width: 120px; height: 160px; object-fit: cover; border: 3px solid white;" alt="Foto Anggota">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5 class="alert-heading fw-bold mb-3 border-bottom border-success pb-2">
-                                            <i class="fas fa-check-circle me-2"></i> Status: Anggota Aktif Terverifikasi
-                                        </h5>
-                                        <table class="table table-sm table-borderless mb-0">
-                                            <tr><td width="35%" class="text-muted">Nama Lengkap</td><td>: <strong>${data.nama}</strong></td></tr>
-                                            <tr><td class="text-muted">Nomor NPA</td><td>: <strong>${data.npa}</strong></td></tr>
-                                            <tr><td class="text-muted">Unit Kerja</td><td>: <strong>${data.sekolah || "-"}</strong></td></tr>
-                                            <tr><td class="text-muted">Ranting</td><td>: <strong>${data.ranting || "-"}</strong></td></tr>
-                                            <tr><td class="text-muted">Jabatan</td><td>: <strong>${data.jabatan || "-"}</strong></td></tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    });
-                }
-            } catch (error) {
-                console.error("Error cek NPA: ", error);
-                hasilCekNPA.innerHTML = '<div class="alert alert-warning text-center">Waduh, koneksi ke server terputus. Coba lagi nanti ya Bos.</div>';
-            } finally {
-                // Kembalikan tombol seperti semula
-                btnCariNPA.innerHTML = 'Cari Data';
-                btnCariNPA.disabled = false;
-            }
-        });
-
-        // ==========================================
-        // MESIN PEMANGGIL PWA (SERVICE WORKER)
-        // ==========================================
+        // Register Service Worker untuk dukungan offline & PWA cache
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(registration => {
-                        console.log('Mesin PWA Sukses Didaftarkan!', registration.scope);
-                    })
-                    .catch(err => {
-                        console.log('Mesin PWA Gagal:', err);
+                const swCode = `
+                    self.addEventListener('install', (e) => {
+                        e.waitUntil(
+                            caches.open('stc-cbt-v1').then((cache) => {
+                                return cache.addAll(['./']);
+                            })
+                        );
                     });
+                    self.addEventListener('fetch', (e) => {
+                        e.respondWith(
+                            caches.match(e.request).then((response) => {
+                                return response || fetch(e.request);
+                            })
+                        );
+                    });
+                `;
+                const swBlob = new Blob([swCode], {type: 'text/javascript'});
+                const swUrl = URL.createObjectURL(swBlob);
+                navigator.serviceWorker.register(swUrl)
+                    .then(() => console.log('PWA Service Worker terdaftar dengan sukses!'))
+                    .catch((err) => console.log('Gagal mendaftarkan SW:', err));
             });
         }
+    </script>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <div id="app" class="flex-1 flex flex-col w-full h-full"></div>
+
+    <script>
+        // --- KONFIGURASI FIREBASE CLOUD ---
+        const firebaseConfig = {
+          apiKey: "AIzaSyC_2pCRdFGfWivtP27ynr-cjf8S0ius6pI",
+          authDomain: "stc-pgri-cbt.firebaseapp.com",
+          projectId: "stc-pgri-cbt",
+          storageBucket: "stc-pgri-cbt.firebasestorage.app",
+          messagingSenderId: "1003836044382",
+          appId: "1:1003836044382:web:b6598f722e1954972ef0cf",
+          measurementId: "G-L7BFL0RY2L"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // --- DATA SOAL STC (Berdasarkan Kisi-Kisi) ---
+        const bankSoal = [
+            // AD/ART (40% - 20 Soal)
+            { id: 1, cat: "AD/ART", text: "Organisasi PGRI merupakan kelanjutan dari Persatuan Guru Hindia Belanda (PGHB) yang didirikan pada tahun...", options: ["1908", "1912", "1928", "1945"], answer: 1 },
+            { id: 2, cat: "AD/ART", text: "Sifat organisasi PGRI yang bermakna tidak memandang perbedaan tempat kerja, agama, dan asal-usul adalah...", options: ["Independen", "Nonpartisan", "Unitaristik", "Profesional"], answer: 2 },
+            { id: 3, cat: "AD/ART", text: "Kepengurusan PGRI tingkat nasional berkedudukan di...", options: ["Ibu kota provinsi", "Ibu kota negara", "Setiap kabupaten/kota", "Kantor kementerian"], answer: 1 },
+            { id: 4, cat: "AD/ART", text: "Makna warna putih pada dasar lambang (Panji) PGRI melambangkan...", options: ["Keberanian", "Kesucian/Ketulusan", "Pengabdian", "Kesejahteraan"], answer: 1 },
+            { id: 5, cat: "AD/ART", text: "Forum tertinggi dalam menentukan kedaulatan organisasi PGRI adalah...", options: ["Konferensi Kerja Nasional", "Rapat Pimpinan Nasional", "Kongres", "Rapat Pleno"], answer: 2 },
+            { id: 6, cat: "AD/ART", text: "Visi PGRI adalah mewujudkan organisasi yang...", options: ["Populer dan menguntungkan", "Terpercaya, dinamis, kuat, dan bermartabat", "Bersifat politis", "Setara dengan partai"], answer: 1 },
+            { id: 7, cat: "AD/ART", text: "Berikut ini yang bukan merupakan perangkat kelengkapan organisasi PGRI adalah...", options: ["Dewan Pembina", "Dewan Kehormatan Guru Indonesia (DKGI)", "Lembaga Swadaya Masyarakat", "Perempuan PGRI"], answer: 2 },
+            { id: 8, cat: "AD/ART", text: "Masa bakti kepengurusan badan pimpinan organisasi PGRI ditetapkan selama...", options: ["3 tahun", "4 tahun", "5 tahun", "6 tahun"], answer: 2 },
+            { id: 9, cat: "AD/ART", text: "Salah satu fungsi PGRI adalah...", options: ["Mencari keuntungan materiil", "Memajukan profesi pendidik", "Mengatur mutasi guru", "Mengangkat ASN"], answer: 1 },
+            { id: 10, cat: "AD/ART", text: "Siapa yang berhak menjadi anggota biasa PGRI?", options: ["Semua warga negara", "Guru, dosen, dan tenaga kependidikan", "Pelajar dan mahasiswa", "Pejabat pemerintah"], answer: 1 },
+            { id: 11, cat: "AD/ART", text: "Lembaga Konsultasi dan Bantuan Hukum (LKBH) PGRI dibentuk untuk memberikan kewenangan organisasi dalam hal...", options: ["Sertifikasi guru", "Pembelaan hukum bagi anggota", "Pengumpulan iuran", "Pemilihan ketua"], answer: 1 },
+            { id: 12, cat: "AD/ART", text: "Keuangan organisasi PGRI tidak bersumber dari...", options: ["Uang pangkal", "Uang iuran", "APBN/APBD secara mutlak", "Sumbangan donatur yang tidak mengikat"], answer: 2 },
+            { id: 13, cat: "AD/ART", text: "Untuk merubah Anggaran Dasar PGRI, forum yang memiliki wewenang adalah...", options: ["Konkernas", "Kongres", "Konprov", "Rapimnas"], answer: 1 },
+            { id: 14, cat: "AD/ART", text: "Kewajiban seorang anggota PGRI adalah, kecuali...", options: ["Mematuhi AD/ART", "Melaksanakan program aktif", "Menjunjung kode etik", "Mengabaikan iuran"], answer: 3 },
+            { id: 15, cat: "AD/ART", text: "Badan Khusus PGRI yang berfokus pada pengembangan pembelajaran cerdas dan karakter adalah...", options: ["BPLP", "LKBH", "PSLCC", "APKS"], answer: 2 },
+            { id: 16, cat: "AD/ART", text: "Hak setiap anggota untuk membela diri diatur dalam...", options: ["Hak suara", "Hak bicara", "Hak dipilih", "Hak membela diri"], answer: 3 },
+            { id: 17, cat: "AD/ART", text: "PGRI didirikan pada Kongres Guru Indonesia di Surakarta pada tanggal...", options: ["17 Agustus 1945", "25 November 1945", "1 Januari 1912", "20 Mei 1908"], answer: 1 },
+            { id: 18, cat: "AD/ART", text: "Jati diri PGRI mencakup tiga hal, yaitu organisasi profesi, ketenagakerjaan, dan...", options: ["Perjuangan", "Politik", "Sosial", "Kemanusiaan"], answer: 0 },
+            { id: 19, cat: "AD/ART", text: "Susunan organisasi tingkat cabang meliputi wilayah...", options: ["Provinsi", "Kabupaten", "Kecamatan", "Desa/Sekolah"], answer: 2 },
+            { id: 20, cat: "AD/ART", text: "Atribut organisasi PGRI meliputi Lambang, Panji, Mars, Hymne, dan...", options: ["Topi", "Sepatu", "Pakaian Seragam", "Kendaraan dinas"], answer: 2 },
+
+            // HARDWARE (20% - 10 Soal)
+            { id: 21, cat: "Hardware", text: "[Stimulus] Papan ketik, mouse, dan scanner. Kelompok perangkat keras tersebut tergolong dalam kategori...", options: ["Output Device", "Input Device", "Processing Device", "Storage Device"], answer: 1 },
+            { id: 22, cat: "Hardware", text: "Port yang paling umum digunakan untuk menghubungkan Papan Interaktif Digital (PID) ke laptop adalah...", options: ["VGA atau HDMI", "PS/2", "RJ-11", "Audio Jack 3.5mm"], answer: 0 },
+            { id: 23, cat: "Hardware", text: "Keunggulan utama Solid State Drive (SSD) dibandingkan Harddisk (HDD) adalah...", options: ["Harga per GB lebih murah", "Kecepatan baca/tulis data jauh lebih cepat", "Menggunakan piringan magnetik", "Lebih mudah rusak jika terjatuh"], answer: 1 },
+            { id: 24, cat: "Hardware", text: "Perangkat jaringan yang berfungsi memancarkan sinyal Wi-Fi di area kelas agar PID dapat terhubung ke internet adalah...", options: ["Switch", "Router/Access Point", "Hub", "LAN Card"], answer: 1 },
+            { id: 25, cat: "Hardware", text: "Proyektor yang tampilannya redup atau berbintik umumnya disebabkan oleh...", options: ["RAM penuh", "Lampu proyektor (bulb) yang mulai melemah/kotor", "Harddisk rusak", "Sistem operasi belum di-update"], answer: 1 },
+            { id: 26, cat: "Hardware", text: "Media penyimpanan optik yang sudah jarang digunakan namun masih sering ditemukan di komputer lama adalah...", options: ["Flashdisk", "SSD", "CD/DVD-ROM", "MicroSD"], answer: 2 },
+            { id: 27, cat: "Hardware", text: "Cara paling tepat untuk mematikan perangkat Papan Interaktif Digital (PID) agar awet adalah...", options: ["Mencabut langsung kabel power", "Menekan tombol power di sistem/menu Shut down lalu menunggu hingga mati total", "Membiarkan menyala 24 jam", "Menyiram dengan air"], answer: 1 },
+            { id: 28, cat: "Hardware", text: "Perangkat yang berfungsi menghasilkan cetakan fisik dari dokumen digital pada komputer adalah...", options: ["Scanner", "Printer", "Speaker", "Monitor"], answer: 1 },
+            { id: 29, cat: "Hardware", text: "Kabel UTP dengan konektor RJ-45 digunakan untuk...", options: ["Mentransmisikan suara ke speaker", "Menghubungkan komputer ke jaringan LAN/Internet", "Menyalurkan daya listrik", "Menampilkan video ke proyektor"], answer: 1 },
+            { id: 30, cat: "Hardware", text: "RAM (Random Access Memory) berfungsi sebagai...", options: ["Penyimpanan data permanen", "Penyimpanan data sementara saat aplikasi berjalan", "Pemroses grafis", "Alat input data"], answer: 1 },
+
+            // SOFTWARE (20% - 10 Soal)
+            { id: 31, cat: "Software", text: "Sistem operasi yang dikembangkan oleh Google dan sering digunakan pada Chromebook adalah...", options: ["Windows 11", "macOS", "ChromeOS", "Linux Ubuntu"], answer: 2 },
+            { id: 32, cat: "Software", text: "Microsoft PowerPoint, Canva, dan Google Slides memiliki fungsi utama untuk...", options: ["Mengolah angka", "Membuat desain presentasi", "Mengedit video", "Menulis bahasa pemrograman"], answer: 1 },
+            { id: 33, cat: "Software", text: "Aplikasi pembelajaran interaktif berbasis kuis yang memungkinkan siswa menjawab menggunakan gawai mereka secara real-time adalah...", options: ["Microsoft Word", "Kahoot! / Quizizz", "Adobe Photoshop", "VLC Media Player"], answer: 1 },
+            { id: 34, cat: "Software", text: "Agar sistem terhindar dari malware saat membuka bahan ajar dari flashdisk luar, langkah pengamanan yang harus dilakukan adalah...", options: ["Menonaktifkan Windows Defender", "Melakukan pemindaian (scanning) dengan Antivirus", "Menghapus semua file", "Melakukan format harddisk"], answer: 1 },
+            { id: 35, cat: "Software", text: "Tipe ekstensi file yang menunjukkan dokumen tersebut adalah bahan ajar berformat Portable Document Format adalah...", options: [".docx", ".xlsx", ".pdf", ".pptx"], answer: 2 },
+            { id: 36, cat: "Software", text: "Aplikasi pengolah nilai berbasis spreadsheet menggunakan simbol ini untuk memulai sebuah rumus matematika...", options: ["+", "=", "*", "/"], answer: 1 },
+            { id: 37, cat: "Software", text: "Untuk mengintegrasikan video YouTube ke dalam Google Slides, fitur yang dipilih pada menu adalah...", options: ["Insert > Image", "Insert > Video", "File > Download", "Format > Text"], answer: 1 },
+            { id: 38, cat: "Software", text: "Password yang kuat untuk keamanan akun platform digital guru sebaiknya terdiri dari...", options: ["Kombinasi huruf besar, kecil, angka, dan simbol", "Tanggal lahir saja", "Nama hewan peliharaan", "Angka berurutan 123456"], answer: 0 },
+            { id: 39, cat: "Software", text: "Fitur 'Share' atau 'Bagikan' pada Google Drive dengan akses 'Viewer' berarti...", options: ["Penerima tautan dapat mengedit file", "Penerima tautan dapat menghapus file", "Penerima tautan hanya dapat melihat/membaca file", "Penerima menjadi pemilik file"], answer: 2 },
+            { id: 40, cat: "Software", text: "Aplikasi browser (peramban) yang paling umum digunakan untuk mengakses Platform Merdeka Mengajar (PMM) di PC adalah...", options: ["Google Chrome", "Microsoft Excel", "Adobe Reader", "WinRAR"], answer: 0 },
+
+            // DIGITALISASI (20% - 10 Soal)
+            { id: 41, cat: "Digitalisasi", text: "Pemanfaatan layar interaktif berukuran besar di depan kelas termasuk dalam kebijakan digitalisasi untuk alat...", options: ["Mesin TIK konvensional", "Papan Interaktif Digital (PID) / Interactive Flat Panel", "Proyektor OHP", "Papan tulis kapur"], answer: 1 },
+            { id: 42, cat: "Digitalisasi", text: "Ekosistem utama yang dikembangkan Kemendikbudristek sebagai wadah bagi guru untuk belajar, berkarya, dan mengajar adalah...", options: ["Platform Merdeka Mengajar (PMM)", "Ruang Guru", "Zenius", "PeduliLindungi"], answer: 0 },
+            { id: 43, cat: "Digitalisasi", text: "Akun resmi yang diberikan pemerintah untuk mengakses berbagai layanan pendidikan digital secara terintegrasi adalah...", options: ["Akun Google biasa (@gmail.com)", "Akun belajar.id", "Akun Yahoo", "Akun iCloud"], answer: 1 },
+            { id: 44, cat: "Digitalisasi", text: "Konsep pembelajaran yang melibatkan pemanfaatan sumber digital untuk membuat siswa aktif berkolaborasi dan berpikir kritis disebut...", options: ["Pembelajaran konvensional", "Pembelajaran Berpusat pada Murid berbasis digital", "Pembelajaran satu arah (Teacher-Centered)", "Pembelajaran pasif"], answer: 1 },
+            { id: 45, cat: "Digitalisasi", text: "Sikap yang mencerminkan etika digital (digital ethics) yang baik bagi seorang pendidik adalah...", options: ["Menyebarkan berita hoaks", "Menghargai hak cipta karya digital orang lain", "Memberikan password dapodik secara bebas", "Menggunakan bahasa kasar di medsos"], answer: 1 },
+            { id: 46, cat: "Digitalisasi", text: "Kemampuan guru untuk menemukan, mengevaluasi, menggunakan, dan membuat informasi menggunakan teknologi digital disebut...", options: ["Literasi Digital", "Literasi Finansial", "Literasi Sains", "Numerasi"], answer: 0 },
+            { id: 47, cat: "Digitalisasi", text: "Jika sekolah belum memiliki koneksi internet yang stabil, solusi alternatif dalam digitalisasi pembelajaran adalah...", options: ["Tidak menggunakan teknologi sama sekali", "Menggunakan perangkat dan aplikasi luring (offline-first)", "Memulangkan siswa", "Menyuruh siswa belajar di warnet"], answer: 1 },
+            { id: 48, cat: "Digitalisasi", text: "Evaluasi efektivitas digitalisasi pembelajaran dapat dilihat dari indikator...", options: ["Peningkatan jumlah gawai yang rusak", "Peningkatan keterlibatan, motivasi, dan pemahaman konsep murid", "Menurunnya interaksi guru dan murid", "Bertambahnya tugas administratif manual"], answer: 1 },
+            { id: 49, cat: "Digitalisasi", text: "Aplikasi Rapor Pendidikan digunakan oleh satuan pendidikan untuk...", options: ["Menginput nilai ulangan harian siswa", "Melihat potret kualitas pendidikan dan merencanakan perbaikan", "Membayar gaji guru", "Mengabsen siswa setiap hari"], answer: 1 },
+            { id: 50, cat: "Digitalisasi", text: "Ikon kunci gembok pada address bar peramban web menandakan bahwa situs web pendidikan yang sedang diakses...", options: ["Sedang di-hack", "Memiliki koneksi aman (HTTPS) terenkripsi", "Komputer terkena virus", "Tidak membutuhkan kuota internet"], answer: 1 }
+        ];
+
+        // --- STATE APLIKASI ---
+        let state = {
+            view: 'home',
+            pesertaNama: '',
+            pesertaAsal: '',
+            pesertaNPA: '',
+            shuffledQuestions: [],
+            answers: {},
+            currentQ: 0,
+            timer: 90 * 60,
+            startTime: null,
+            violations: 0,
+            intervalId: null,
+            liveScores: []
+        };
+
+        // --- SISTEM PENYIMPANAN SESI (KEBAL RELOAD) ---
+        function saveLocalState() {
+            localStorage.setItem('stc_cbt_state', JSON.stringify(state));
+        }
+        function clearLocalState() {
+            localStorage.removeItem('stc_cbt_state');
+        }
+
+        // --- SISTEM POP-UP KUSTOM ---
+        function customAlert(title, msg, type='info', callback=null) {
+            const div = document.createElement('div');
+            div.className = 'fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
+            const icon = type === 'error' ? '<i class="fa-solid fa-triangle-exclamation text-red-500"></i>' :
+                         type === 'warning' ? '<i class="fa-solid fa-circle-exclamation text-amber-500"></i>' :
+                         '<i class="fa-solid fa-circle-info text-blue-500"></i>';
+            div.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center animate-pulse-once">
+                    <div class="text-5xl mb-3">${icon}</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">${title}</h3>
+                    <p class="text-slate-600 text-sm mb-6">${msg}</p>
+                    <button id="btn-c-ok" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl transition shadow">Mengerti</button>
+                </div>`;
+            document.body.appendChild(div);
+            document.getElementById('btn-c-ok').onclick = () => { div.remove(); if(callback) callback(); };
+        }
+
+        function customConfirm(title, msg, onYes) {
+            const div = document.createElement('div');
+            div.className = 'fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
+            div.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center">
+                    <div class="text-5xl mb-3"><i class="fa-solid fa-circle-question text-amber-500"></i></div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">${title}</h3>
+                    <p class="text-slate-600 text-sm mb-6">${msg}</p>
+                    <div class="flex gap-3">
+                        <button id="btn-c-no" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 rounded-xl transition">Batal</button>
+                        <button id="btn-c-yes" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-xl transition shadow">Ya, Yakin</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(div);
+            document.getElementById('btn-c-no').onclick = () => div.remove();
+            document.getElementById('btn-c-yes').onclick = () => { div.remove(); onYes(); };
+        }
+
+        function promptResetLomba() {
+            const div = document.createElement('div');
+            div.className = 'fixed inset-0 bg-slate-900/80 z-[100] flex items-center justify-center p-4 backdrop-blur-sm';
+            div.innerHTML = `
+                <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center">
+                    <div class="text-5xl mb-3"><i class="fa-solid fa-skull-crossbones text-red-500"></i></div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Reset Perlombaan</h3>
+                    <p class="text-slate-600 text-sm mb-4">Semua data peserta di server akan dihapus permanen. Ketik <strong>RESET</strong> untuk melanjutkan.</p>
+                    <input type="text" id="inp-reset" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-4 py-3 text-center font-bold text-red-600 text-lg mb-6 uppercase focus:outline-none focus:border-red-500" placeholder="Ketik RESET">
+                    <div class="flex gap-3">
+                        <button id="btn-r-no" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 rounded-xl transition">Batal</button>
+                        <button id="btn-r-yes" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl transition shadow">Hapus Data</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(div);
+            document.getElementById('btn-r-no').onclick = () => div.remove();
+            document.getElementById('btn-r-yes').onclick = () => {
+                const val = document.getElementById('inp-reset').value.trim().toUpperCase();
+                div.remove();
+                if(val === 'RESET') {
+                    executeResetDatabase();
+                } else {
+                    customAlert('Gagal', 'Kata kunci salah. Reset dibatalkan.', 'error');
+                }
+            };
+        }
+
+        function executeResetDatabase() {
+            showLoading("Mereset Data Server...");
+            db.collection("peserta_stc").get().then((snapshot) => {
+                const batch = db.batch();
+                snapshot.docs.forEach((doc) => {
+                    batch.delete(doc.ref);
+                });
+                return batch.commit();
+            }).then(() => {
+                hideLoading();
+                customAlert("Berhasil", "Seluruh data perlombaan telah direset menjadi nol.", "info");
+                fetchParticipants();
+            }).catch((e) => {
+                hideLoading();
+                customAlert("Error", "Gagal mereset data: " + e.message, "error");
+            });
+        }
+
+        // --- FIREBASE: SIMPAN DAN AMBIL DATA ---
+        function saveParticipantResult(res) {
+            // Sistem Timeout 5 Detik Anti-Nganggur
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error("TimeoutKoneksi")), 5000);
+            });
+
+            return Promise.race([
+                db.collection("peserta_stc").doc(res.npa).set(res),
+                timeoutPromise
+            ])
+            .then(() => {
+                console.log("Data berhasil dikirim ke Cloud Firebase!");
+            })
+            .catch((error) => {
+                console.error("Error menyimpan data: ", error);
+                customAlert("Koneksi Lemah", "Nilai Anda tetap aman tersimpan, namun saat ini gagal dikirim ke pusat karena jaringan. Silakan screenshot halaman hasil ujian Anda.", "warning");
+            });
+        }
+
+        async function fetchParticipants() {
+            try {
+                // Sistem Timeout 5 Detik Anti-Nganggur
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error("TimeoutKoneksi")), 5000);
+                });
+
+                const snapshot = await Promise.race([
+                    db.collection("peserta_stc").get(),
+                    timeoutPromise
+                ]);
+                
+                let list = [];
+                snapshot.forEach(doc => {
+                    list.push(doc.data());
+                });
+                
+                list.sort((a, b) => {
+                    if (b.nilaiAkhir !== a.nilaiAkhir) return b.nilaiAkhir - a.nilaiAkhir;
+                    return a.durasi - b.durasi;
+                });
+                state.liveScores = list;
+            } catch (error) {
+                console.error("Gagal mengambil Live Score:", error);
+                throw error; // Lemparkan error agar ditangkap oleh panitia_login
+            }
+        }
+
+        // --- ANTI CHEAT SYSTEM ---
+        function handleVisibilityChange() {
+            if (document.hidden && state.view === 'ujian') {
+                state.violations += 1;
+                saveLocalState();
+                customAlert("Peringatan Pelanggaran!", `Anda telah keluar dari layar ujian! Ini adalah pelanggaran ke-${state.violations}. Poin Anda akan dikurangi 1% di akhir.`, "warning");
+            }
+        }
+        function initAntiCheat() {
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+            document.addEventListener("visibilitychange", handleVisibilityChange);
+        }
+
+        // --- TIMER ---
+        function startTimer() {
+            clearInterval(state.intervalId);
+            state.intervalId = setInterval(() => {
+                state.timer--;
+                saveLocalState();
+                
+                const m = Math.floor(state.timer / 60).toString().padStart(2, '0');
+                const s = (state.timer % 60).toString().padStart(2, '0');
+                const tEl = document.getElementById('timer-display');
+                if(tEl) {
+                    tEl.innerText = `${m}:${s}`;
+                    if(state.timer <= 300) tEl.classList.add('text-red-500', 'animate-pulse');
+                }
+                
+                if (state.timer <= 0) {
+                    clearInterval(state.intervalId);
+                    customAlert("Waktu Habis", "Waktu Anda telah habis. Jawaban akan dikirim otomatis.", "warning", () => {
+                        finishExam();
+                    });
+                }
+            }, 1000);
+        }
+
+        // --- UTILITAS UI ---
+        function switchView(v) {
+            state.view = v;
+            if(v === 'home') clearLocalState();
+            saveLocalState();
+            render();
+        }
+
+        function showLoading(msg = 'Menyimpan data ujian Anda ke server...') {
+            const div = document.createElement('div');
+            div.id = 'loading-overlay';
+            div.className = 'fixed inset-0 bg-slate-900/90 z-[200] flex flex-col items-center justify-center p-4 backdrop-blur-sm';
+            div.innerHTML = `
+                <div class="text-5xl text-emerald-500 mb-6 animate-spin"><i class="fa-solid fa-circle-notch"></i></div>
+                <h3 class="text-xl font-bold text-white mb-2">${msg}</h3>
+                <p class="text-slate-400 text-sm text-center">Mohon jangan tutup halaman ini.</p>`;
+            document.body.appendChild(div);
+        }
+
+        function hideLoading() {
+            const el = document.getElementById('loading-overlay');
+            if(el) el.remove();
+        }
+
+        // --- FUNGSI UJIAN ---
+        function startExam() {
+            const nama = document.getElementById('inp_nama').value.trim();
+            const asal = document.getElementById('inp_asal').value.trim();
+            const npa = document.getElementById('inp_npa').value.trim();
+
+            if(!nama || !asal || !npa) {
+                customAlert('Data Belum Lengkap', 'Mohon lengkapi seluruh form data diri Anda terlebih dahulu!', 'warning');
+                return;
+            }
+
+            clearLocalState();
+
+            state.pesertaNama = nama;
+            state.pesertaAsal = asal;
+            state.pesertaNPA = npa;
+            state.startTime = Date.now();
+            state.answers = {};
+            state.violations = 0;
+            state.timer = 90 * 60;
+            state.currentQ = 0;
+            
+            let shuffled = [...bankSoal].sort(() => 0.5 - Math.random());
+            state.shuffledQuestions = shuffled;
+            
+            switchView('ujian');
+            startTimer();
+            initAntiCheat();
+        }
+
+        function setAnswer(qIndex, aIndex) {
+            state.answers[qIndex] = aIndex;
+            saveLocalState();
+            render();
+        }
+
+        function confirmFinish() {
+            const answeredCount = Object.keys(state.answers).length;
+            const unans = state.shuffledQuestions.length - answeredCount;
+            if(unans > 0) {
+                customConfirm("Konfirmasi Akhiri Ujian", `Masih ada <b class="text-red-500">${unans} soal</b> yang belum dijawab. Apakah yakin ingin mengakhiri ujian?`, () => {
+                    finishExam();
+                });
+            } else {
+                customConfirm("Kirim Jawaban", "Apakah Anda yakin ingin mengirimkan jawaban ujian ini?", () => {
+                    finishExam();
+                });
+            }
+        }
+
+        function finishExam() {
+            clearInterval(state.intervalId);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+            
+            showLoading("Memproses Nilai & Menyimpan ke Cloud...");
+
+            const durationSecs = Math.floor((Date.now() - state.startTime) / 1000);
+
+            let correct = 0;
+            state.shuffledQuestions.forEach((q, idx) => {
+                if(state.answers[idx] === q.answer) correct++;
+            });
+
+            let baseScore = (correct / state.shuffledQuestions.length) * 100;
+            let finalScore = baseScore - (state.violations * 1);
+            if (finalScore < 0) finalScore = 0;
+
+            const resultData = {
+                nama: state.pesertaNama,
+                asal: state.pesertaAsal,
+                npa: state.pesertaNPA,
+                benar: correct,
+                totalSoal: state.shuffledQuestions.length,
+                pelanggaran: state.violations,
+                durasi: durationSecs,
+                nilaiAkhir: parseFloat(finalScore.toFixed(2)),
+                waktuSelesai: new Date().toISOString()
+            };
+
+            saveParticipantResult(resultData).then(() => {
+                hideLoading();
+                switchView('result');
+            });
+        }
+
+        // --- PANITIA ---
+        async function handlePanitiaLogin() {
+            const u = document.getElementById('p_user').value;
+            const p = document.getElementById('p_pass').value;
+            const btn = document.getElementById('btn-login-panitia');
+            
+            if(u === 'admin_stc' && p === 'pgri2026') {
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengambil Data...';
+                try {
+                    await fetchParticipants();
+                    switchView('panitia_dash');
+                } catch(e) {
+                    btn.innerHTML = 'Masuk Dashboard';
+                    customAlert('Koneksi Gagal', 'Gagal memuat data dari server. Pastikan internet stabil dan Database Firebase Anda sudah diaktifkan di Console.', 'error');
+                }
+            } else {
+                customAlert('Akses Ditolak', 'Username atau Password Panitia salah.', 'error');
+            }
+        }
+
+        // --- PWA INSTALL HANDLER & PANDUAN MANUAL ---
+        function triggerInstallPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Pengguna menerima instalasi PWA');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Tampilkan petunjuk manual jika browser mobile (Chrome/Safari) tidak memicu prompt otomatis
+                customAlert('Cara Install Aplikasi (PWA)', '1. Ketuk ikon titik tiga (⋮) di pojok kanan atas browser HP Anda.<br><br>2. Pilih menu <strong>"Tambahkan ke Layar Utama"</strong> atau <strong>"Install Aplikasi"</strong>.<br><br>3. Konfirmasi instalasi, dan aplikasi CBT STC akan langsung terpasang di HP Anda!', 'info');
+            }
+        }
+
+        // --- RENDER UI ---
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = '';
+
+            if (state.view === 'home') {
+                app.innerHTML = `
+                <div class="flex-1 flex items-center justify-center p-4 relative overflow-hidden">
+                    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                    
+                    <div class="glass-panel max-w-4xl w-full rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10">
+                        <div class="md:w-1/2 p-10 flex flex-col justify-center bg-gradient-to-br from-slate-900 to-slate-800 text-white text-center md:text-left">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_PGRI.svg/192px-Logo_PGRI.svg.png" class="w-24 h-24 mx-auto md:mx-0 mb-6 drop-shadow-lg" alt="PGRI Logo">
+                            <h1 class="text-4xl font-extrabold mb-2 leading-tight">Smart Teacher<br><span class="text-emerald-400">Competition</span></h1>
+                            <p class="text-slate-300 text-sm mb-2 uppercase tracking-widest font-semibold">Ujian Berbasis Komputer</p>
+                            <p class="text-emerald-400 text-xs mb-6 uppercase tracking-widest font-bold">PGRI Cabang Kec. Samarang</p>
+                            
+                            <!-- Tombol Install PWA (Selalu Muncul & Interaktif) -->
+                            <div class="mb-4">
+                                <button onclick="triggerInstallPWA()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow flex items-center justify-center gap-2 text-sm">
+                                    <i class="fa-solid fa-download"></i> Install Aplikasi ke HP
+                                </button>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 mb-6 text-sm text-slate-300">
+                                <ul class="text-left space-y-2">
+                                    <li><i class="fa-solid fa-clock w-5 text-emerald-400"></i> Durasi Ujian: 90 Menit</li>
+                                    <li><i class="fa-solid fa-list-check w-5 text-blue-400"></i> Proporsi: AD/ART, Hardware, Software, Digitalisasi</li>
+                                    <li><i class="fa-solid fa-shield w-5 text-rose-400"></i> Anti-Cheat Aktif (Pindah tab = -1%)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-10 bg-white flex flex-col justify-center">
+                            <h2 class="text-2xl font-bold text-slate-800 mb-6">Login Peserta</h2>
+                            <div class="space-y-4 mb-8">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Lengkap</label>
+                                    <input type="text" id="inp_nama" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="Masukkan nama Anda">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Asal Sekolah</label>
+                                    <input type="text" id="inp_asal" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="Contoh: SDN 1 Tanjungkarya">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Pokok Anggota (NPA)</label>
+                                    <input type="number" id="inp_npa" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition" placeholder="Masukkan 10 digit NPA">
+                                </div>
+                            </div>
+                            <button onclick="startExam()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-emerald-500/30 flex justify-center items-center gap-2 text-lg">
+                                <i class="fa-solid fa-play"></i> Mulai Ujian Sekarang
+                            </button>
+                            
+                            <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+                                <button onclick="switchView('panitia_login')" class="text-slate-400 hover:text-slate-600 text-sm font-semibold transition"><i class="fa-solid fa-user-shield mr-1"></i> Login Panitia</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            } 
+            else if (state.view === 'panitia_login') {
+                app.innerHTML = `
+                <div class="flex-1 flex items-center justify-center p-4">
+                    <div class="bg-slate-800 max-w-md w-full rounded-2xl p-8 shadow-2xl border border-slate-700 relative">
+                        <button onclick="switchView('home')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-xl"></i></button>
+                        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><i class="fa-solid fa-shield-halved text-amber-500"></i> Login Panitia STC</h2>
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Username Panitia</label>
+                                <input type="text" id="p_user" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password</label>
+                                <input type="password" id="p_pass" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500">
+                            </div>
+                        </div>
+                        <button id="btn-login-panitia" onclick="handlePanitiaLogin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3.5 rounded-xl transition">Masuk Dashboard</button>
+                    </div>
+                </div>`;
+            }
+            else if (state.view === 'panitia_dash') {
+                app.innerHTML = `
+                <div class="flex-1 flex flex-col bg-slate-100">
+                    <header class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center shadow-md">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg font-bold text-sm">PANITIA STC</div>
+                            <h1 class="font-bold text-lg hidden sm:block">Live Score & Monitoring</h1>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="promptResetLomba()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm transition font-semibold"><i class="fa-solid fa-trash-can mr-2"></i> Reset Lomba</button>
+                            <button onclick="switchView('home')" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm transition"><i class="fa-solid fa-right-from-bracket mr-2"></i> Keluar</button>
+                        </div>
+                    </header>
+                    <main class="flex-1 max-w-6xl w-full mx-auto p-6 overflow-y-auto">
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                                <h2 class="text-xl font-bold text-slate-800">Klasemen Sementara</h2>
+                                <button onclick="fetchParticipants().then(()=>render())" class="text-slate-500 hover:text-emerald-600 bg-white border border-slate-200 px-3 py-1 rounded-lg text-sm"><i class="fa-solid fa-rotate-right mr-1"></i> Segarkan</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-100 text-slate-500 text-sm uppercase">
+                                            <th class="p-4 font-bold">Rank</th>
+                                            <th class="p-4 font-bold">Peserta</th>
+                                            <th class="p-4 font-bold text-center">NPA</th>
+                                            <th class="p-4 font-bold text-center">Benar</th>
+                                            <th class="p-4 font-bold text-center">Pelanggaran</th>
+                                            <th class="p-4 font-bold text-center">Durasi</th>
+                                            <th class="p-4 font-bold text-right text-emerald-600">Nilai Akhir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${state.liveScores.map((p, i) => `
+                                        <tr class="border-b border-slate-50 hover:bg-slate-50 transition">
+                                            <td class="p-4 font-bold ${i===0?'text-amber-500 text-lg':i===1?'text-slate-400':i===2?'text-amber-700':''}">${i+1}</td>
+                                            <td class="p-4">
+                                                <div class="font-bold text-slate-800">${p.nama}</div>
+                                                <div class="text-xs text-slate-500">${p.asal}</div>
+                                            </td>
+                                            <td class="p-4 text-center text-sm font-mono">${p.npa}</td>
+                                            <td class="p-4 text-center font-semibold text-blue-600">${p.benar}/${p.totalSoal}</td>
+                                            <td class="p-4 text-center font-semibold ${p.pelanggaran > 0 ? 'text-red-500' : 'text-slate-400'}">${p.pelanggaran}x (-${p.pelanggaran}%)</td>
+                                            <td class="p-4 text-center text-sm">${Math.floor(p.durasi/60)}m ${p.durasi%60}s</td>
+                                            <td class="p-4 text-right font-extrabold text-lg text-emerald-600">${p.nilaiAkhir}</td>
+                                        </tr>`).join('')}
+                                        ${state.liveScores.length === 0 ? `<tr><td colspan="7" class="p-8 text-center text-slate-400">Belum ada peserta yang menyelesaikan ujian.</td></tr>` : ''}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                </div>`;
+            }
+            else if (state.view === 'ujian') {
+                const q = state.shuffledQuestions[state.currentQ];
+                app.innerHTML = `
+                <header class="bg-slate-900 text-white px-4 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-500 text-slate-950 px-2 py-1 rounded text-xs font-bold">STC 2026 CBT</div>
+                        <div class="font-semibold text-sm hidden sm:block">${state.pesertaNama} (${state.pesertaAsal})</div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-2 border border-slate-700">
+                            <i class="fa-regular fa-clock text-amber-400"></i>
+                            <span id="timer-display" class="font-mono font-bold text-lg">--:--</span>
+                        </div>
+                        <button onclick="confirmFinish()" class="bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded-lg font-bold text-sm transition">Selesai</button>
+                    </div>
+                </header>
+                
+                <main class="flex-1 flex flex-col md:flex-row max-w-7xl w-full mx-auto p-4 md:p-6 gap-6 bg-slate-50 min-h-0">
+                    <div class="flex-1 flex flex-col bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                            <div class="bg-slate-100 text-slate-600 font-bold px-4 py-1.5 rounded-full text-sm">SOAL NOMOR ${state.currentQ + 1} DARI ${state.shuffledQuestions.length}</div>
+                            <div class="text-sm font-semibold text-slate-400"><i class="fa-solid fa-tag mr-1"></i> Kategori: ${q.cat}</div>
+                        </div>
+                        <div class="p-6 md:p-10 flex-1 overflow-y-auto text-lg text-slate-800">
+                            <p class="mb-8 leading-relaxed">${q.text}</p>
+                            <div class="space-y-3">
+                                ${q.options.map((opt, i) => `
+                                    <label class="custom-radio block cursor-pointer group">
+                                        <input type="radio" name="q_opt" class="hidden" onchange="setAnswer(${state.currentQ}, ${i})" ${state.answers[state.currentQ] === i ? 'checked' : ''}>
+                                        <div class="flex items-center p-4 rounded-xl border-2 border-slate-200 group-hover:border-emerald-200 transition duration-200 bg-white">
+                                            <div class="letter-box w-8 h-8 rounded bg-slate-100 text-slate-500 flex items-center justify-center font-bold mr-4 text-sm transition">${String.fromCharCode(65+i)}</div>
+                                            <div class="flex-1 select-none font-medium">${opt}</div>
+                                        </div>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="p-6 border-t border-slate-100 bg-slate-50 flex justify-between">
+                            <button onclick="state.currentQ--; render()" class="px-6 py-3 rounded-xl font-bold text-slate-500 hover:bg-slate-200 transition ${state.currentQ === 0 ? 'invisible' : ''}"><i class="fa-solid fa-arrow-left mr-2"></i> Sebelumnya</button>
+                            ${state.currentQ < state.shuffledQuestions.length - 1 ? 
+                                `<button onclick="state.currentQ++; render()" class="px-6 py-3 rounded-xl font-bold text-white bg-slate-800 hover:bg-slate-700 transition shadow">Selanjutnya <i class="fa-solid fa-arrow-right ml-2"></i></button>` : 
+                                `<button onclick="confirmFinish()" class="px-6 py-3 rounded-xl font-bold text-white bg-emerald-500 hover:bg-emerald-600 transition shadow">Selesai & Kirim <i class="fa-solid fa-check ml-2"></i></button>`
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-72 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-fit shrink-0">
+                        <h3 class="font-bold text-slate-800 mb-4">Navigasi Soal</h3>
+                        <div class="grid grid-cols-5 gap-2">
+                            ${state.shuffledQuestions.map((_, i) => {
+                                const isAns = state.answers[i] !== undefined;
+                                const isCur = state.currentQ === i;
+                                let classes = "w-10 h-10 rounded-lg font-bold text-sm flex items-center justify-center transition border ";
+                                if(isCur) classes += "ring-2 ring-offset-2 ring-emerald-500 ";
+                                if(isAns) classes += "bg-emerald-500 text-white border-emerald-600";
+                                else classes += "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200";
+                                
+                                return `<button onclick="state.currentQ=${i}; render()" class="${classes}">${i+1}</button>`;
+                            }).join('')}
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-slate-100 text-xs font-semibold space-y-2">
+                            <div class="flex items-center text-slate-500"><div class="w-3 h-3 rounded bg-emerald-500 mr-2"></div> Sudah Dijawab</div>
+                            <div class="flex items-center text-slate-400"><div class="w-3 h-3 rounded bg-slate-100 border border-slate-200 mr-2"></div> Belum Dijawab</div>
+                        </div>
+                    </div>
+                </main>`;
+            }
+            else if (state.view === 'result') {
+                let correct = 0;
+                state.shuffledQuestions.forEach((q, idx) => { if(state.answers[idx] === q.answer) correct++; });
+                const durasi = Math.floor((Date.now() - state.startTime) / 1000);
+                const mins = Math.floor(durasi / 60);
+                let baseScore = (correct / state.shuffledQuestions.length) * 100;
+                let finalScore = baseScore - (state.violations * 1);
+                if (finalScore < 0) finalScore = 0;
+
+                app.innerHTML = `
+                <div class="flex-1 flex items-center justify-center p-4 bg-slate-900 text-white">
+                    <div class="max-w-md w-full text-center">
+                        <div class="w-24 h-24 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-4xl mx-auto mb-6">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h2 class="bg-emerald-500 text-emerald-950 px-4 py-1 rounded-full font-bold text-xs inline-block mb-4">UJIAN SELESAI BERHASIL</h2>
+                        <h1 class="text-3xl font-extrabold mb-1">${state.pesertaNama}</h1>
+                        <p class="text-slate-400 text-sm mb-8">${state.pesertaAsal} • NPA: ${state.pesertaNPA}</p>
+                        
+                        <div class="bg-slate-800 rounded-2xl p-6 mb-8 text-left border border-slate-700">
+                            <div class="flex justify-between items-center mb-4 border-b border-slate-700/50 pb-4">
+                                <span class="text-slate-400">Jawaban Benar:</span>
+                                <span class="font-bold text-emerald-400">${correct} / ${state.shuffledQuestions.length}</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4 border-b border-slate-700/50 pb-4">
+                                <span class="text-slate-400">Total Pelanggaran:</span>
+                                <span class="font-bold ${state.violations > 0 ? 'text-red-400' : 'text-slate-400'}">${state.violations} Kali (-${state.violations}%)</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-slate-400">Durasi Pengerjaan:</span>
+                                <span class="font-bold text-white">${mins} Menit</span>
+                            </div>
+                            <div class="flex justify-between items-end pt-4 border-t border-slate-700">
+                                <span class="text-slate-400 font-bold">Nilai Akhir:</span>
+                                <span class="font-black text-5xl text-amber-400 drop-shadow-md">${parseFloat(finalScore.toFixed(2))}</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="switchView('home')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-4 rounded-xl transition">Kembali ke Beranda Utama</button>
+                    </div>
+                </div>`;
+            }
+        }
+
+        window.onload = function() {
+            const savedState = localStorage.getItem('stc_cbt_state');
+            if(savedState) {
+                try {
+                    const parsed = JSON.parse(savedState);
+                    Object.assign(state, parsed);
+                } catch(e) {
+                    console.error("Gagal memulihkan sesi", e);
+                }
+            }
+
+            render();
+
+            if(state.view === 'ujian') {
+                startTimer();
+                initAntiCheat();
+            } else if (state.view === 'panitia_dash') {
+                fetchParticipants().then(() => render());
+            }
+        };
     </script>
 </body>
 </html>
